@@ -25,10 +25,10 @@ int main(void)
     printf("Enter your number: ");
     scanf("%f", &inputNumber);
 
-    if (inputNumber == (float) 0) {
-        printf("Please enter number != 0\n");
+    if (inputNumber <= 0) {
+        printf("Please enter number > 0\n");
 
-        return 0;
+        return -1;
     }
 
     printf("square root %f = %f\n", inputNumber, squareRoot(inputNumber));
