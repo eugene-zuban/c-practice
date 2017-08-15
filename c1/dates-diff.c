@@ -7,16 +7,16 @@ struct date
     int year;
 };
 
-// Compute the number of dates between two dates
+// Compute the number of dates between two dates using Julian days comparison
 int daysDiff(struct date firstDate, struct date secondDate)
 {
-    int nCount (struct date);
+    int julianDay(struct date);
 
-    return nCount(firstDate) - nCount(secondDate);
+    return julianDay(firstDate) - julianDay(secondDate);
 }
 
-// Count the N number using the formula for computing the number of days between two dates
-int nCount(struct date countDate)
+// convert date to Julian day number
+int julianDay(struct date countDate)
 {
     int fCount(int year, int month);
     int gCount(int month);
