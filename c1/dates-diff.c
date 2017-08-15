@@ -7,7 +7,7 @@ struct date
     int year;
 };
 
-// Count the N number using the formula for computing the number of days between two dates
+// Compute the number of dates between two dates
 int daysDiff(struct date firstDate, struct date secondDate)
 {
     int nCount (struct date);
@@ -15,6 +15,7 @@ int daysDiff(struct date firstDate, struct date secondDate)
     return nCount(firstDate) - nCount(secondDate);
 }
 
+// Count the N number using the formula for computing the number of days between two dates
 int nCount(struct date countDate)
 {
     int fCount(int year, int month);
