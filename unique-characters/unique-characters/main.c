@@ -8,8 +8,28 @@
 
 #include <stdio.h>
 
+void printCharacters(char *inputString) {
+    int dictinary[30] = {};
+
+    while (*inputString) {
+        dictinary[(int) *inputString]++;
+        printf("Current character is: %c\n", *inputString);
+
+        inputString++;
+    }
+}
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+    void printCharacters(char *inputString);
+    char inputString[80] = {};
+
+    printf("Please enter your string: ");
+    scanf("%s", inputString);
+
+    // build a hash table with caracters
+    printCharacters(inputString);
+
+    printf("Your string is: %s\n", inputString);
+
     return 0;
 }
