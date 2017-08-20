@@ -1,6 +1,6 @@
 //
 //  main.c
-//  unique-characters
+//  Check if a string has all unique characters by counting how many times each character appears using its ASCII code
 //
 //  Created by Jack Zuban on 8/20/17.
 //  Copyright © 2017 Jack Zuban. All rights reserved.
@@ -8,28 +8,30 @@
 
 #include <stdio.h>
 
-void printCharacters(char *inputString) {
-    int dictinary[30] = {};
+_Bool isUniqueChars(char *str) {
+    int frequencyDictionary[127] = {};
 
-    while (*inputString) {
-        dictinary[(int) *inputString]++;
-        printf("Current character is: %c\n", *inputString);
+    while(*str) {
+        frequencyDictionary[(int) *str]++;
 
-        inputString++;
+        if (frequencyDictionary[(int) *str] > 1) {
+            return 0;
+        }
+
+        str++;
     }
+
+    return 1;
 }
 
-int main(int argc, const char * argv[]) {
-    void printCharacters(char *inputString);
-    char inputString[80] = {};
+int main(void) {
+    _Bool isUniqueChars(char *string);
+    char inputString[127] = {};
 
     printf("Please enter your string: ");
-    scanf("%s", inputString);
+    fgets(inputString, 128, stdin);
 
-    // build a hash table with caracters
-    printCharacters(inputString);
-
-    printf("Your string is: %s\n", inputString);
+    printf("This string with %s\n", isUniqueChars(inputString) ? "unique characters." : "duplicates.");
 
     return 0;
 }
