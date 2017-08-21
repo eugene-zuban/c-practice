@@ -1,3 +1,4 @@
 *.out
 *.swp
 *.xcodeproj*
+.DS_Store
