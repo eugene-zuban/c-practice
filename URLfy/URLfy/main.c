@@ -1,6 +1,6 @@
 //
 //  main.c
-//  URLfy: replace spaces with '%20'
+//  URLfy: replace spaces with '%20'. Currently the string is processing from the end.
 //
 //  Created by Jack Zuban on 8/21/17.
 //  Copyright © 2017 Jack Zuban. All rights reserved.
