@@ -17,28 +17,35 @@ void readLine(char *buffer)
     *(--buffer) = '\0';
 }
 
-void replaceSpaces(char dataString[])
+void replaceSpaces(char *origStrPt)
 {
-    int origStrLen = 0, newStrLen = 0, numberOfSpaces = 0;
+    int origStrLen = 0, numberOfSpaces = 0;
+    char *newStrPt;
 
-    for (origStrLen = 0; dataString[origStrLen] != '\0'; origStrLen++) {
-        if (dataString[origStrLen] == ' ') {
+    // count spaces and string length
+    while(*origStrPt) {
+        if (*origStrPt == ' ') {
             numberOfSpaces++;
         }
-    }
 
-    newStrLen = origStrLen + numberOfSpaces * 2;
-    dataString[newStrLen] = '\0';
+        origStrLen++;
+        origStrPt++;
+    };
+
+    // set pointer for new string at the end
+    newStrPt = (--origStrPt) + numberOfSpaces * 2;
+    *(newStrPt + 1) = '\0';
 
     for (int i = origStrLen - 1; i >= 0; i--) {
-        if (dataString[i] == ' ') {
-            dataString[--newStrLen] = '0';
-            dataString[--newStrLen] = '2';
-            dataString[--newStrLen] = '%';
-
+        if (*origStrPt == ' ') {
+            *(newStrPt--) = '0';
+            *(newStrPt--) = '2';
+            *(newStrPt--) = '%';
         } else {
-            dataString[--newStrLen] = dataString[i];
+            *(newStrPt--) = *origStrPt;
         }
+
+        origStrPt--;
     }
 }
 
