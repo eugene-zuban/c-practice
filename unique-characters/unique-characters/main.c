@@ -1,6 +1,6 @@
 //
 //  main.c
-//  Check if a string has all unique characters by counting how many times each character appears using its ASCII code
+//  Check if a string has all unique characters by counting how many times each character appears using ASCII codes.
 //
 //  Created by Jack Zuban on 8/20/17.
 //  Copyright © 2017 Jack Zuban. All rights reserved.
