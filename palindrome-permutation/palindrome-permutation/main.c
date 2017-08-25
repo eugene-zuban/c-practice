@@ -1,67 +1,86 @@
 //
 //  main.c
 //  palindrome-permutation
-//  Check if a given string is a permutation of a palidrome.
+//  Check if a given string is a permutation of a palidrome by toggling the bits that represent characters on the string.
 //
 //
 
 #include <stdio.h>
 #include <stdbool.h>
 
-void removeSpaces(char *originalString)
+bool isEnglishLetter(char character)
 {
-    char *withoutSpaces;
+    return ((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z'));
+}
 
-    withoutSpaces = originalString; // set pointer to the start of originalString
+void filterSrting(char *originalString)
+{
+    bool isEnglishLetter(char);
+    char *cleanString;
+
+    cleanString = originalString;
 
     while(*originalString && *originalString != '\n') {
-        if (*originalString != ' ') {
-            *(withoutSpaces++) = *originalString;
+        if (isEnglishLetter(*originalString)) {
+            *(cleanString++) = *originalString;
         }
 
         originalString++;
     }
 
-    *withoutSpaces = '\0'; // we need to "close" the string properly because both pointers poin to the same string in the memory
+    *cleanString = '\0';
 }
 
-int countStrLength(char *string)
+bool checkThatOnlyOneBitIsSet(int bitVector)
 {
-    int length = 0;
-
-    while (*string++) {
-        length++;
-    }
-
-    return length;
+    return (bitVector & (bitVector - 1)) == 0;
 }
 
-bool isPalindromePermutation(char *string)
+int createBitVector(char *phrase)
 {
-    int countStrLength(char *string);
+    int mask, bitVector = 0;
 
-    // if length is odd, it's not a palindrome
-    if (countStrLength(string) % 2 == 0) {
-        return false;
+    while(*phrase) {
+        mask = 1 << *phrase; // ex: 1 << 3 = 0100;
+
+        if ((bitVector & mask) == 0) { // ex. 0000 & 0100 = 0000. TRUE means that the bit represents a new character for bitVector
+            bitVector |= mask; // TRUE case: set the bit from the mask
+        } else {
+            bitVector &= ~mask; // it's a toggle for the bitVector's bit using the mask.
+        }
+
+        phrase++;
     }
 
-    // count characters states
+    return bitVector;
+}
 
-    return true;
+// a palindrome needs to have odd number of similar characters or only one character without a pair.
+// we form an integer bit vector where each bit is a character's number ('a' is bit 97)
+// and we toggle a character's bit every time when we see the character in the string.
+bool isPermutationOfPalindrome(char *string)
+{
+    void filterSrting(char *);
+    bool chackThatOnlyOneBitIsSet(int);
+    int createBitVector(char *);
+    int bitVector;
+
+    filterSrting(string);
+    bitVector = createBitVector(string);
+
+    // bitVector equals 0 means that we have the even number of similar characters and the string is "balanced"
+    // if bitVector has more than one bit set, means that we have at least 2 odd characters that don't have their pairs on the string
+    return bitVector == 0 || checkThatOnlyOneBitIsSet(bitVector);
 }
 
 int main(int argc, const char * argv[]) {
-    void removeSpaces(char * str1);
-    bool isPalindromePermutation(char *stringForCheck);
+    bool isPalindromePermutation(char *);
+    char phraseForCheck[80] = {};
 
-    char providedString[80] = {};
+    printf("Please enter your phrase: ");
+    fgets(phraseForCheck, 80, stdin);
 
-    printf("Please enter your string: ");
-    fgets(providedString, 80, stdin);
-
-    removeSpaces(providedString);
-
-    printf("The string is %s a permutation of a palindrome\n", isPalindromePermutation(providedString) ? "" : "not");
+    printf("The string is %s a permutation of a palindrome\n", isPermutationOfPalindrome(phraseForCheck) ? "" : "not");
 
     return 0;
 }
