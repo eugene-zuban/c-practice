@@ -1,20 +1,20 @@
 //
 //  main.c
 //  palindrome-permutation
-//  Check if a given string is a permutation of a palidrome by toggling the bits that represent characters on the string.
+//  Check if a given string is a permutation of a palindrome by toggling the bits that represent characters in the string.
 //
 //
 
 #include <stdio.h>
 #include <stdbool.h>
 
-// false for a non ASCII English letter.
+// false for a non-ASCII English letter.
 bool isEnglishLetter(char character)
 {
     return ((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z'));
 }
 
-// substruct 1 from bitVector and bit ANDing bitVector needs to return 0 if only a one bit is set.
+// substruct one from bitVector and bit ANDing bitVector needs to return 0 if only one bit is set.
 bool checkThatOnlyOneBitIsSet(int bitVector)
 {
     return (bitVector & (bitVector - 1)) == 0;
@@ -33,7 +33,7 @@ int createBitVector(char *phrase)
             if ((bitVector & mask) == 0) { // ex. 0000 & 0100 = 0000. TRUE means that the bit represents a new character for bitVector
                 bitVector |= mask; // TRUE case: set the bit from the mask
             } else {
-                bitVector &= ~mask; // it's a toggle for the bitVector's bit using the mask.
+                bitVector &= ~mask; // it's a toggle for bitVector's bit using the mask.
             }
         }
 
@@ -43,9 +43,9 @@ int createBitVector(char *phrase)
     return bitVector;
 }
 
-// a palindrome needs to have odd number of similar characters or only one character without a pair.
-// we form an integer bit vector where each bit is a character's number ('a' is bit 97)
-// and we toggle a character's bit every time when we see the character in the string.
+// a palindrome needs to have an even number of similar characters or only one character without a pair.
+// we form an integer bit vector where each bit is a character's number ('a' sets a bit 97)
+// and we toggle a character's bit whenever we see the character in the string.
 bool isPermutationOfPalindrome(char *phrase)
 {
     bool chackThatOnlyOneBitIsSet(int);
@@ -55,7 +55,7 @@ bool isPermutationOfPalindrome(char *phrase)
     bitVector = createBitVector(phrase);
 
     // bitVector equals 0 means that we have the even number of similar characters and the string is "balanced"
-    // if bitVector has more than one bit set, means that we have at least 2 odd characters that don't have their pairs on the string
+    // if bitVector has more than one bit set, means that we have at least two odd characters that don't have their pairs on the string
     return bitVector == 0 || checkThatOnlyOneBitIsSet(bitVector);
 }
 
