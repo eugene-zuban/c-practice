@@ -35,7 +35,6 @@ int createBitVector(char *phrase)
             } else {
                 bitVector &= ~mask; // it's a toggle for the bitVector's bit using the mask.
             }
-
         }
 
         phrase++;
