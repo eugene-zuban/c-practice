@@ -5,60 +5,45 @@
 //
 
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
-// make hash table with string's characters count and return string length
-int analyzeString(char *string, int * charactersFrequency)
-{
-    int length = 0;
+bool cheakThatOnlyOneReplace(char *str1, char *str2) {
+    bool editFlag = false;
 
-    while(*(string + length)) {
-        charactersFrequency[*(string + length)]++;
+    while (*str1) {
+        if (*(str1++) != *(str2++)) {
+            if (editFlag) { // if true, means that we already have one replase
+                return false;
+            }
 
-        length++;
+            editFlag = true;
+        }
     }
 
-    return length;
+    return true; // no or only one replace
 }
 
-bool doesStringsHaveOneOrLessChanges(char *str1, char *str2)
+bool isOneEditAway(char *str1, char *str2)
 {
-    int analyzeString(char *string, int * charactersFrequency);
-    int frequencyStr1[127] = {}, frequencyStr2[127] = {};
-    int editsCount = 0, characterChangeRange = 0, strLen1 = 0, strLen2 = 0;
+    bool cheakThatOnlyOneReplace(char *str1, char *str2);
+    unsigned long int strLen1, strLen2;
 
-    strLen1 = analyzeString(str1, frequencyStr1);
-    strLen2 = analyzeString(str2, frequencyStr2);
+    strLen1 = strlen(str1);
+    strLen2 = strlen(str2);
 
-    int lengthDiff = strLen1 - strLen2;
-
-    if (lengthDiff < 0) {
-        lengthDiff = -lengthDiff;
-    }
-
-    if (lengthDiff > 1) {
+    if (abs(strLen1 - strLen2) > 1) { // more than 2 edits
         return false;
+    } else if (strLen1 == strLen2) { // equal length means check for replace only
+        return cheakThatOnlyOneReplace(str1, str2);
     }
-
-    for (int i = 0; i <= 127; i++) {
-        characterChangeRange = frequencyStr1[i] - frequencyStr2[i]; // count difference between similar letters
-        if (characterChangeRange < 0) {
-            characterChangeRange = -characterChangeRange;
-        }
-
-        editsCount += characterChangeRange;
-
-        if (editsCount > 1) {
-            return false;
-        }
-    };
 
     return true;
 }
 
 int main(void) {
     char str1[80] = {}, str2[80] = {};
-    bool doesStringsHaveOneOrLessChanges(char *str1, char *str2);
+    bool isOneEditAway(char *str1, char *str2);
 
     printf("Please enter first string:");
     scanf("%s79", str1);
@@ -66,7 +51,7 @@ int main(void) {
     printf("Please enter second string:");
     scanf("%s79", str2);
 
-    printf("The strings have %s edits\n", doesStringsHaveOneOrLessChanges(str1, str2) ? "one or none" : "more than one");
+    printf("The strings are one edit away: %s\n", isOneEditAway(str1, str2) ? "true" : "false");
 
     return 0;
 }
