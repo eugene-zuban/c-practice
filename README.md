@@ -17,3 +17,5 @@ This repo includes small solutions written on C using different sources for idea
 3. URLfy: a method to replace all spaces in a string with '%20'. The algorithm in my code does replacements from the end of the string. [Code: replacing spaces using pointers.](https://github.com/jack-zuban/c-practice/tree/master/URLfy/URLfy/main.c)
 
 4. Check if given string is a permutation of a palindrome. The palindrome could be any character sequence and it does not need to be limited to dictionary words. [Code: Permutation of a palindrome check using bit mask.](https://github.com/jack-zuban/c-practice/blob/master/palindrome-permutation/palindrome-permutation/main.c)
+
+5. Check that two strings are one (or none) edit away from each other. [Code: one edit away checker.](https://github.com/jack-zuban/c-practice/blob/master/one-away/one-away/main.c)
