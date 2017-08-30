@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// store compressed string into out pointer and return compressed string length
+// store compressed string using out pointer
 void compress(char *in, char *out) {
     char currentChar;
     int counter;
