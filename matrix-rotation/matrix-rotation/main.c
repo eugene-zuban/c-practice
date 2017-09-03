@@ -32,18 +32,18 @@ int main(void) {
     void fillMatrix(int rows, int cols, int matrix[rows][cols]);
     void printMatrix(int rows, int cols, int matrix[rows][cols]);
 
-    int mRows = 0, mCols = 0;
+    int nRows = 0, nCols = 0;
     
     printf("Please enter number of rows: ");
-    scanf("%d", &mRows);
+    scanf("%d", &nRows);
     printf("Please enter number of columns: ");
-    scanf("%d", &mCols);
+    scanf("%d", &nCols);
 
-    int matrix[mCols][mRows];
+    int matrix[nCols][nRows];
 
-    fillMatrix(mRows, mCols, matrix);
+    fillMatrix(nRows, nCols, matrix);
     
-    printMatrix(mRows, mCols, matrix);
+    printMatrix(nRows, nCols, matrix);
 
     return 0;
 }
