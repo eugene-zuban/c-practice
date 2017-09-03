@@ -11,7 +11,7 @@ void fillMatrix(int rows, int cols, int matrixx[rows][cols]) {
 
     for (row = 0; row < rows; ++row) {
         for (col = 0; col < cols; ++col) {
-            matrixx[row][col] = 10 * (col + 1) + (row + 1);
+            matrixx[row][col] = 10 * (row + 1) + (col + 1);
         }
     } 
 };
