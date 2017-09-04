@@ -19,12 +19,12 @@ void fillMatrix(int n, int matrix[n][n]) {
 void rotateMatrix(int n, int matrix[n][n]) {
     int layers = n / 2;
 
-    for (int layer = 0; layer < layers; layer++) {
+    for (int layer = 0; layer < layers; ++layer) {
         int first = layer;
-        int last = n -1 - layer;
+        int last = n - 1 - layer;
 
-        for (int i = first; i < last; i++) {
-            int offset = last - i;
+        for (int i = first; i < last; ++i) {
+            int offset = last - i + first;
 
             // save top
             int top = matrix[first][i];
