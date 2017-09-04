@@ -6,22 +6,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void fillMatrix(int rows, int cols, int matrix[rows][cols]) {
+void fillMatrix(int n, int matrix[n][n]) {
     int col, row;
 
-    for (row = 0; row < rows; ++row) {
-        for (col = 0; col < cols; ++col) {
+    for (row = 0; row < n; ++row) {
+        for (col = 0; col < n; ++col) {
             matrix[row][col] = 10 * (row + 1) + (col + 1);
         }
     } 
 };
 
-void rotateMatrix(int rows, int cols, int matrix[rows][cols]) {
-    int layers = rows / 2;
+void rotateMatrix(int n, int matrix[n][n]) {
+    int layers = n / 2;
 
-    for (int layer = 0; layer <= layers; layer++) {
+    for (int layer = 0; layer < layers; layer++) {
         int first = layer;
-        int last = cols - layers;
+        int last = n -1 - layer;
 
         for (int i = first; i < last; i++) {
             int offset = last - i;
@@ -44,11 +44,11 @@ void rotateMatrix(int rows, int cols, int matrix[rows][cols]) {
     }
 }
 
-void printMatrix(int rows, int cols, int matrix[rows][cols]) {
+void printMatrix(int n, int matrix[n][n]) {
     int row, col;
 
-    for (row = 0; row < rows; ++row) {
-        for (col = 0; col < cols; ++col) {
+    for (row = 0; row < n; ++row) {
+        for (col = 0; col < n; ++col) {
             printf("%5i", matrix[row][col]);
         }
 
@@ -57,25 +57,23 @@ void printMatrix(int rows, int cols, int matrix[rows][cols]) {
 };
 
 int main(void) {
-    void fillMatrix(int rows, int cols, int matrix[rows][cols]);
-    void printMatrix(int rows, int cols, int matrix[rows][cols]);
+    void fillMatrix(int n, int matrix[n][n]);
+    void printMatrix(int n, int matrix[n][n]);
 
-    int nRows = 0, nCols = 0;
+    int n = 0;
     
-    printf("Please enter number of rows: ");
-    scanf("%d", &nRows);
-    printf("Please enter number of columns: ");
-    scanf("%d", &nCols);
+    printf("Please enter matrix's dimension: ");
+    scanf("%d", &n);
 
-    int matrix[nRows][nCols];
+    int matrix[n][n];
 
-    fillMatrix(nRows, nCols, matrix);
-    printMatrix(nRows, nCols, matrix);
+    fillMatrix(n, matrix);
+    printMatrix(n, matrix);
 
     printf("\n");
 
-    rotateMatrix(nRows, nCols, matrix);
-    printMatrix(nRows, nCols, matrix);
+    rotateMatrix(n, matrix);
+    printMatrix(n, matrix);
 
     return 0;
 }
