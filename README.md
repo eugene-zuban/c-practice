@@ -21,3 +21,5 @@ This repo includes small solutions written on C using different sources for idea
 5. Check that two strings are one (or none) edit away from each other. [Code: one edit away checker.](https://github.com/jack-zuban/c-practice/blob/master/one-away/one-away/main.c)
 
 6. Compress a given string using the count of repeated characters. Return the original string if the compressed string length is more or equal original. [Code: string compression](https://github.com/jack-zuban/c-practice/blob/master/string-compression/string-compression/main.c)
+
+5. Rotate a given NxN matrix 90 by degrees doing in place rotation. [Code: matrix rotation](https://github.com/jack-zuban/c-practice/blob/master/matrix-rotation/matrix-rotation/main.c)
