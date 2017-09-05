@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 // false for a non-ASCII English letter.
 bool isEnglishLetter(char character)
@@ -28,7 +29,7 @@ int createBitVector(char *phrase)
 
     while(*phrase) {
         if (isEnglishLetter(*phrase)) {
-            mask = 1 << *phrase; // ex: 1 << 3 = 0100;
+            mask = 1 << (tolower(*phrase) - 96); // ex: 1 << 3 = 0100;
 
             if ((bitVector & mask) == 0) { // ex. 0000 & 0100 = 0000. TRUE means that the bit represents a new character for bitVector
                 bitVector |= mask; // TRUE case: set the bit from the mask
