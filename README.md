@@ -22,4 +22,6 @@ This repo includes small solutions written on C using different sources for idea
 
 6. Compress a given string using the count of repeated characters. Return the original string if the compressed string length is more or equal original. [Code: string compression](https://github.com/jack-zuban/c-practice/blob/master/string-compression/string-compression/main.c)
 
-5. Rotate a given NxN matrix 90 by degrees doing in place rotation. [Code: matrix rotation](https://github.com/jack-zuban/c-practice/blob/master/matrix-rotation/matrix-rotation/main.c)
+7. Rotate a given NxN matrix 90 by degrees doing in place rotation. [Code: matrix rotation](https://github.com/jack-zuban/c-practice/blob/master/matrix-rotation/matrix-rotation/main.c)
+
+8. [Zero Matrix](https://github.com/jack-zuban/c-practice/blob/master/zero-matrix/zero-matrix/main.c) On a given matrix MxN if an element is 0, set its entire row and col to 0 without using extra space for storage.
