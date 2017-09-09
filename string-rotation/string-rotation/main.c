@@ -12,8 +12,9 @@ bool isRotation(char *s1, char *s2) {
     bool isSubstring(char *s1, char *s2);
     void appendString(char *s1, char *s2);
 
-    appendString(s2, s2); // copy s2 into s2
+    appendString(s2, s2); // s2 = s2 + s2
 
+    // if s1 is a substring of s2 + s2, means that s1 is a rotation of s2
     return isSubstring(s2, s1);
 }
 
@@ -21,6 +22,7 @@ bool isSubstring(char *s1, char *s2) {
     return strstr(s1, s2) ? true : false;
 }
 
+// add s2 to the end of s1
 void appendString(char *s1, char *s2) {
     int s1length = (int) strlen(s1);
     int i = 0;
