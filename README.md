@@ -25,3 +25,5 @@ This repo includes small solutions written on C using different sources for idea
 7. [Matrix Rotation:](https://github.com/jack-zuban/c-practice/blob/master/matrix-rotation/matrix-rotation/main.c) Rotate a given NxN matrix 90 by degrees doing in place rotation.
 
 8. [Zero Matrix:](https://github.com/jack-zuban/c-practice/blob/master/zero-matrix/zero-matrix/main.c) On a given matrix MxN if an element is 0, set its entire row and col to 0 without using extra space for storage.
+
+9. [String Rotation Check:](https://github.com/jack-zuban/c-practice/blob/master/string-rotation/string-rotation/main.c) Given two strings s1 and s2, check if s2 is a rotation of s1.
