@@ -33,7 +33,7 @@ struct node *makeList(void) {
 
         newNode = (struct node *) malloc(sizeof(struct node));
         if (newNode == NULL) {
-            fprintf(stderr, "Error allocation memory\n");
+            fprintf(stderr, "Error allocating memory\n");
             exit(EXIT_FAILURE);
         }
 
