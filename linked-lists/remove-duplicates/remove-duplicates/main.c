@@ -23,7 +23,7 @@ bool isValueSetOnMap(char value);
 void setValueOnMap(char value); 
 int getValueCode(char value);
 
-// check nodeValuesMap for the value's flag
+// check nodeValuesMap for provided value's flag
 bool isValueSetOnMap(char value) {
     int code = getValueCode(value);
 
@@ -34,16 +34,16 @@ bool isValueSetOnMap(char value) {
     return nodeValuesMap[code];
 }
 
-// set "flag" for the value on the nodeValuesMap
+// set provided value's flag to true
 void setValueOnMap(char value) {
     int code = getValueCode(value);
 
-    if (code >= 0) {
+    if (code >= 0) { // for simplicity works only with a-z && A-Z chars
         nodeValuesMap[code] = true;
     }
 }
 
-// convert an alphabet char into its int code, or return -1 for non alphabetic chars
+// convert an alphabet char into integer code where a is 0, or return -1 for non alphabetic chars
 int getValueCode(char value) {
     if (value >= 'a' && value <= 'z') {
         return value - 'a';
@@ -56,6 +56,7 @@ int getValueCode(char value) {
     return -1;
 }
 
+// make a linked list
 struct node *makeList(void) {
     int nodes = 0;
     struct node *listHead = LIST_END, *previousNode = LIST_END, *newNode;
@@ -99,6 +100,7 @@ void printList(struct node *listNode) {
     printf("\n");
 }
 
+// remove duplicates using hash table for checking if each value from the list is unique.
 void removeDuplicates(struct node *listNode) {
     struct node *previousNode = LIST_END;
 
