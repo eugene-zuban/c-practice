@@ -18,6 +18,43 @@ bool nodeValuesMap[52] = {}; // "hash" table for storing flags of characters fro
 
 struct node *makeList(void);
 void printList(struct node *head);
+void removeDuplicates(struct node *head);
+bool isValueSetOnMap(char value); 
+void setValueOnMap(char value); 
+int getValueCode(char value);
+
+// check nodeValuesMap for the value's flag
+bool isValueSetOnMap(char value) {
+    int code = getValueCode(value);
+
+    if (code < 0) { // remove only alphabetical duplicates
+        return false;
+    }
+
+    return nodeValuesMap[code];
+}
+
+// set "flag" for the value on the nodeValuesMap
+void setValueOnMap(char value) {
+    int code = getValueCode(value);
+
+    if (code >= 0) {
+        nodeValuesMap[code] = true;
+    }
+}
+
+// convert an alphabet char into its int code, or return -1 for non alphabetic chars
+int getValueCode(char value) {
+    if (value >= 'a' && value <= 'z') {
+        return value - 'a';
+    }
+
+    if (value >= 'A' && value <= 'Z') {
+        return value - 'A';
+    }
+
+    return -1;
+}
 
 struct node *makeList(void) {
     int nodes = 0;
@@ -62,8 +99,27 @@ void printList(struct node *listNode) {
     printf("\n");
 }
 
+void removeDuplicates(struct node *listNode) {
+    struct node *previousNode = LIST_END;
+
+    while (listNode != LIST_END) {
+        if (isValueSetOnMap(listNode->value)) {
+            previousNode->next = listNode->next;
+            free(listNode);
+            listNode = previousNode->next;
+        } else {
+            setValueOnMap(listNode->value);
+            previousNode = listNode;
+            listNode = listNode->next;
+        }
+    }
+}
+
 int main(void) {
     struct node *listHead = makeList();
+    printList(listHead);
+
+    removeDuplicates(listHead);
     printList(listHead);
 
     return 0;
