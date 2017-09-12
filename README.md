@@ -27,3 +27,6 @@ This repo includes small solutions written on C using different sources for idea
 8. [Zero Matrix:](https://github.com/jack-zuban/c-practice/blob/master/array-and-strings/zero-matrix/zero-matrix/main.c) On a given matrix MxN if an element is 0, set its entire row and col to 0 without using extra space for storage.
 
 9. [String Rotation Check:](https://github.com/jack-zuban/c-practice/blob/master/array-and-strings/string-rotation/string-rotation/main.c) Given two strings s1 and s2, check if s2 is a rotation of s1.
+
+**Linked Lists**
+1. [Remove duplicates:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/remove-duplicates/remove-duplicates/main.c) Remove duplicates from a linked list.
