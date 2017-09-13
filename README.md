@@ -30,3 +30,5 @@ This repo includes small solutions written on C using different sources for idea
 
 **Linked Lists**
 1. [Remove duplicates:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/remove-duplicates/remove-duplicates/main.c) Remove duplicates from a linked list.
+
+2. [Return nth to last:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/find-nth-to-last/find-nth-to-last/main.c) Return Nth to last element in a linked list using recursion during searhing.
