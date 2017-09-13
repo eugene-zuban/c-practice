@@ -4,17 +4,20 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
+
+#define LIST_END (struct node *) 0
 
 struct node {
     int value;
     struct node *next;
-}
+};
 
-#define LIST_END = (struct node *) 0;
-
-struct node *makeList(void), *findNthTOLast(struct node *head, int *nodeIndex, int nSearh);
+struct node *makeList(void);
+struct node *findNthToLast(struct node *head, int *nodeIndex, int nSearh);
 void printList(struct node *head);
 
+// searching Nth to last using recursion
 struct node *findNthToLast(struct node *head, int *nodeIndex, int nSearch) {
     if (head == LIST_END) {
         return LIST_END;
@@ -22,7 +25,7 @@ struct node *findNthToLast(struct node *head, int *nodeIndex, int nSearch) {
 
     struct node *item = findNthToLast(head->next, nodeIndex, nSearch);
 
-    *nodeIndex = *nodeIndex + 1;
+    *nodeIndex += 1;
     if (*nodeIndex == nSearch) {
         return head;
     }
@@ -41,12 +44,12 @@ void printList(struct node *head) {
 
 struct node *makeList(void) {
     int nodes = 0;
-    struct node *item, *head = END_LIST, *previous = END_LIST;
+    struct node *item, *head = LIST_END, *previous = LIST_END;
 
     printf("Please enter the number of nodes: ");
     scanf("%d", &nodes);
 
-    while (nodes-- > 0) {
+    while ((nodes--) > 0) {
         item = malloc(sizeof(struct node));
 
         if (item == NULL) {
@@ -55,10 +58,36 @@ struct node *makeList(void) {
         }
 
         printf("Please enter node value: ");
-        scanf("%d", item->value);
+        scanf("%d", &item->value);
+        item->next = LIST_END;
+
+        if (head == LIST_END) {
+            head = item;
+            previous = head;
+
+            continue;
+        }
+        
+        previous->next = item;
+        previous = item;
     }
+
+    return head;
 }
 
 int main(void) {
+    struct node *list, *nthNode;
+    int elementToLast = 0, index = 0;
+    int *indexNode = &index;
+
+    list = makeList();
+    printList(list);
+
+    printf("Enter Nth to last element: ");
+    scanf("%d", &elementToLast);
+
+    nthNode = findNthToLast(list, indexNode, elementToLast);
+    printf("Nth to last element has value %d \n", nthNode->value);
+
     return 0;
 }
