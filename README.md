@@ -32,3 +32,5 @@ This repo includes small solutions written on C using different sources for idea
 1. [Remove duplicates:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/remove-duplicates/remove-duplicates/main.c) Remove duplicates from a linked list.
 
 2. [Return nth to last:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/find-nth-to-last/find-nth-to-last/main.c) Return Nth to last element in a linked list using recursion during searhing.
+
+3. [Delete middle node:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/delete-middle-node/delete-middle-node/main.c) Delete a node in the middle from a linked list given access to this node only.
