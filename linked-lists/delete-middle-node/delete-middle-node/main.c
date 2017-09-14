@@ -18,7 +18,7 @@ void printList(struct node *head);
 struct node *getMiddle(struct node *head);
 struct node *makeList();
 
-// removing the current node by copying its next node's values into it and removing the next node from the memory.
+// "removing" the current node by copying the next node's data into it.
 void removeNode(struct node *nd) {
     struct node *nextNode;
 
@@ -29,6 +29,7 @@ void removeNode(struct node *nd) {
     }
 }
 
+// searching the middle node by moving p2 pointer two nodes at a time while p1 goes through each node.
 struct node *getMiddle(struct node *head) {
     struct node *p1 = head, *p2 = head;
     int i = 0;
@@ -46,21 +47,22 @@ struct node *getMiddle(struct node *head) {
 
 struct node *makeList() {
     struct node *head = END_LIST, *previous = END_LIST, *item;
-    int nodes = 0;
+    int nodes = 0, value = 0;
 
     printf("Please enter number of nodes: ");
     scanf("%d", &nodes);
 
     while ((nodes)-- > 0) {
-        item = malloc(sizeof(struct node));
+        printf("Please enter node's value: ");
+        scanf("%d", &value);
 
+        item = malloc(sizeof(struct node));
         if (item == NULL) {
             fprintf(stderr, "Error memory allocation\n");
             exit(EXIT_FAILURE);
         }
 
-        printf("Please enter node's value: ");
-        scanf("%d", &item->value);
+        item->value = value;
         item->next = END_LIST;
 
         if (head == END_LIST) {
@@ -76,7 +78,7 @@ struct node *makeList() {
 }
 
 void printList(struct node *head) {
-    printf("your current linked list: ");
+    printf("Your linked list is: ");
 
     while (head != END_LIST) {
         printf("%d ", head->value);
@@ -92,7 +94,7 @@ int main(void) {
 
     struct node *middleNode = getMiddle(list);
     if (middleNode) {
-        printf("Removing a node with value: %d\n", middleNode->value);     
+        printf("Removing the node with the value: %d\n", middleNode->value);
         removeNode(middleNode);
     }
     printList(list);
