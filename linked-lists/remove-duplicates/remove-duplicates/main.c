@@ -81,11 +81,11 @@ struct node *makeList(void) {
         // link nodes to make a linked list
         if (listHead == LIST_END) {
             listHead = newNode;
-            previousNode = listHead;
         } else {
             previousNode->next = newNode;
-            previousNode = newNode;
         }
+
+        previousNode = newNode;
     }
 
     return listHead;
