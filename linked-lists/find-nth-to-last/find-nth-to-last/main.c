@@ -43,32 +43,31 @@ void printList(struct node *head) {
 }
 
 struct node *makeList(void) {
-    int nodes = 0;
+    int nodes = 0, value = 0;
     struct node *item, *head = LIST_END, *previous = LIST_END;
 
     printf("Please enter the number of nodes: ");
     scanf("%d", &nodes);
 
     while ((nodes--) > 0) {
-        item = malloc(sizeof(struct node));
+        printf("Please enter node's value: ");
+        scanf("%d", &value);
 
+        item = malloc(sizeof(struct node));
         if (item == NULL) {
-            fprintf(stderr, "Error memory allocation\n");
+            fprintf(stderr, "Allocating memory error\n");
             exit(EXIT_FAILURE);
         }
 
-        printf("Please enter node value: ");
-        scanf("%d", &item->value);
+        item->value = value;
         item->next = LIST_END;
 
         if (head == LIST_END) {
             head = item;
-            previous = head;
-
-            continue;
+        } else {
+            previous->next = item;
         }
-        
-        previous->next = item;
+
         previous = item;
     }
 
