@@ -25,9 +25,11 @@ struct node *partition(struct node *nd, int x) {
         struct node *next = nd->next;
 
         if (nd->value >= x) {
+            // set node to the end
             tail->next = nd;
             tail = nd;
         } else {
+            // if less than X, set node to the beginning
             nd->next = head;
             head = nd;
         }
@@ -35,7 +37,7 @@ struct node *partition(struct node *nd, int x) {
         nd = next;
     }
 
-    tail->next = LIST_END;
+    tail->next = LIST_END; // prevent the last node from pointing to an incorrect part/node
 
     return head;
 }
