@@ -34,3 +34,5 @@ This repo includes small solutions written on C using different sources for idea
 2. [Return nth to last:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/find-nth-to-last/find-nth-to-last/main.c) Return Nth to last element in a linked list using recursion during searhing.
 
 3. [Delete middle node:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/delete-middle-node/delete-middle-node/main.c) Delete a node in the middle from a linked list given access to this node only.
+
+4. [Linked list partitioning:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/list-partition/list-partition/main.c) Partition a linked list around given X by moving nodes less than X to the left, and more or equal to the right side of the list.
