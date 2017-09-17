@@ -19,6 +19,38 @@ struct node *makeList(void);
 void printList(struct node *head);
 struct node *addLists(struct node *list1, struct node *list2);
 
+struct node *addLists(struct node *list1, struct node *list2) {
+    int carry = 0, add1 = 0, add2 = 0, sum = 0;
+    struct node *result = (struct node *) malloc(sizeof(struct node));
+    struct node *head = result;
+
+    while (list1 != LIST_END || list2 != LIST_END) {
+        add1 = (list1 != LIST_END) ? list1->data : 0;
+        add2 = (list2 != LIST_END) ? list2->data : 0;
+        sum = add1 + add2 + carry;
+        carry = sum / 10;
+        result->data = sum % 10;
+
+        list1 = (list1 != LIST_END) ? list1->next : LIST_END;
+        list2 = (list2 != LIST_END) ? list2->next : LIST_END;
+
+        if (list1 != LIST_END || list2 != LIST_END) {
+            result->next = (struct node *) malloc(sizeof(struct node));
+            result = result->next;
+        }
+    }
+
+    if (carry) {
+        result->next = (struct node *) malloc(sizeof(struct node));
+        result = result->next;
+        result->data = carry;
+    }
+
+    result->next = LIST_END;
+
+    return head;
+}
+
 struct node *makeList(void) {
     struct node *head = LIST_END, *previous = LIST_END;
     int items = 0, value = 0;
@@ -70,6 +102,9 @@ int main(void) {
 
     printList(list1);
     printList(list2);
+
+    struct node *sum = addLists(list1, list2);
+    printList(sum);
 
     return 0;
 }
