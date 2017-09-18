@@ -37,4 +37,4 @@ This repo includes small solutions written on C using different sources for idea
 
 4. [Linked list partitioning:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/list-partition/list-partition/main.c) Partition a linked list around given X by moving nodes less than X to the left, and more or equal to the right side of the list.
 
-5. [Sum linked lists:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/sum-reverse-lists/sum-reverse-lists/main.c) and [recursion version:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/sum-reverse-lists/sum-reverse-lists/recursion.c)
+5. [Sum linked lists](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/sum-reverse-lists/sum-reverse-lists/main.c) and [recursion version:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/sum-reverse-lists/sum-reverse-lists/recursion.c): add two linked lists which represent integer numbers in reverse order, and write the result into a linked list in reverse order too. Example: (1 -> 3 -> 5) + (2 -> 3 -> 4) = (3 -> 6 -> 9) represents 531 + 432 = 963.
