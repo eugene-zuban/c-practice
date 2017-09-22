@@ -125,8 +125,8 @@ int main(void) {
     list1 = makeList();
     list2 = makeList();
 
-    int diff = countElements(list1) - countElements(list2);
     // make lists the same length for performing their sum by digit operation
+    int diff = countElements(list1) - countElements(list2);
     if (diff > 0) {
         list2 = padList(diff, list2);
     } else if (diff < 0) {
