@@ -15,8 +15,31 @@ typedef struct node {
 } node;
 
 node *makeList(void);
-void printList(node *list);
 node *addItems(node *item1, node *item2, node *previosResult);
+node *padList(int padSize, node *listToPad);
+int countElements(node *list);
+void printList(node *list);
+
+int countElements(node *head) {
+    int i = 0;
+    while (head != LIST_END) {
+        i++;
+        head = head->next;
+    }
+
+    return i;
+}
+
+node *padList(int padSize, node *head) {
+    while ((padSize--) > 0 && head != LIST_END) {
+        node *zeroItem = (node *) malloc(sizeof(node));
+        zeroItem->data = 0;
+        zeroItem->next = head;
+        head = zeroItem;
+    }
+
+    return head;
+}
 
 node *addItems(node *item1, node *item2, node *previousResult) {
     bool isFirstItem = false;
@@ -96,9 +119,16 @@ int main(void) {
     list1 = makeList();
     list2 = makeList();
 
+    int diff = countElements(list1) - countElements(list2);
+
+    if (diff > 0) {
+        list2 = padList(diff, list2);
+    } else if (diff < 0) {
+        list1 = padList(diff * -1, list1);
+    }
+
     printList(list1);
     printList(list2);
-
     printList(addItems(list1, list2, LIST_END));
 
     return 0;
