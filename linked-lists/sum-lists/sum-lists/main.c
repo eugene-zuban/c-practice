@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define LIST_END (node *) 0
 
@@ -16,6 +17,36 @@ typedef struct node {
 node *makeList(void);
 void printList(node *list);
 node *addItems(node *item1, node *item2, node *previosResult);
+
+node *addItems(node *item1, node *item2, node *previousResult) {
+    bool isFirstItem = false;
+    
+    if (item1 == LIST_END && item2 == LIST_END) {
+        return LIST_END;
+    }
+
+    if (previousResult == LIST_END) {
+        previousResult = (node *) malloc(sizeof(node));
+        previousResult->data = 0;
+        isFirstItem = true;
+    }
+
+    node *currentResult = (node *) malloc(sizeof(node));
+    currentResult->data = 0;
+
+    currentResult->next = addItems(item1->next, item2->next, currentResult);
+    int sum = currentResult->data + item1->data + item2->data;
+    currentResult->data = sum % 10;
+    previousResult->data = sum / 10;
+
+    if (isFirstItem && previousResult->data) {
+        previousResult->next = currentResult;
+
+        return previousResult;
+    }
+
+    return currentResult;
+}
 
 node *makeList(void) {
     node *head = LIST_END, *previous = LIST_END;
@@ -67,6 +98,8 @@ int main(void) {
 
     printList(list1);
     printList(list2);
+
+    printList(addItems(list1, list2, LIST_END));
 
     return 0;
 }
