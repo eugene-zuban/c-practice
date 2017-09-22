@@ -1,6 +1,6 @@
 //
 //  main.c
-//  sum-lists: sum two linked lists represent integer numbers.
+//  sum-lists: sum two linked lists which represent integer numbers.
 //
 
 #include <stdio.h>
@@ -30,6 +30,7 @@ int countElements(node *head) {
     return i;
 }
 
+// add zeros to the beginning of the given list
 node *padList(int padSize, node *head) {
     while ((padSize--) > 0 && head != LIST_END) {
         node *zeroItem = (node *) malloc(sizeof(node));
@@ -41,13 +42,17 @@ node *padList(int padSize, node *head) {
     return head;
 }
 
+// summarize lists items using recursion from left to right
+// lists need to have identical length using padList()
 node *addItems(node *item1, node *item2, node *previousResult) {
     bool isFirstItem = false;
-    
+
+    // forming the last element of resulting list
     if (item1 == LIST_END && item2 == LIST_END) {
         return LIST_END;
     }
 
+    // the first element of resulting list
     if (previousResult == LIST_END) {
         previousResult = (node *) malloc(sizeof(node));
         previousResult->data = 0;
@@ -59,9 +64,10 @@ node *addItems(node *item1, node *item2, node *previousResult) {
 
     currentResult->next = addItems(item1->next, item2->next, currentResult);
     int sum = currentResult->data + item1->data + item2->data;
-    currentResult->data = sum % 10;
-    previousResult->data = sum / 10;
+    currentResult->data = sum % 10; // take the second digit
+    previousResult->data = sum / 10; // use here as a carried number
 
+    // check do we need to add a node that carries 1 from the sum operation to the header
     if (isFirstItem && previousResult->data) {
         previousResult->next = currentResult;
 
@@ -120,7 +126,7 @@ int main(void) {
     list2 = makeList();
 
     int diff = countElements(list1) - countElements(list2);
-
+    // make lists the same length for performing their sum by digit operation
     if (diff > 0) {
         list2 = padList(diff, list2);
     } else if (diff < 0) {
@@ -129,6 +135,8 @@ int main(void) {
 
     printList(list1);
     printList(list2);
+
+    // add lists and print the result
     printList(addItems(list1, list2, LIST_END));
 
     return 0;
