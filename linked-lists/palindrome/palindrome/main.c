@@ -16,7 +16,7 @@ typedef struct node {
 
 node *makeList();
 void printList(node *head);
-bool isPalindrome(node *head, node *end, int length, int offset);
+bool isPalindrome(node *head, node *end, int *length, int *offset);
 
 void printList(node *head) {
     while (head != LIST_END) {
@@ -61,12 +61,48 @@ node *makeList() {
     return head;
 }
 
+// comparing elements pairs that have the same distance to the middle of the list
+// the list is a palindrome if all the pairs comparisons return true
+bool isPalindrome(node *head, node *runner, int *length, int *offset) {
+    // we will move the runner till it reaches the end
+    runner = runner->next;
 
+    if (runner == LIST_END) { // the end of the list, it doesn't have a pair and we don't need to check it
+        return true;
+    }
+
+    *length += 1;
+
+    // using recursion for getting to the list end and start checking elements from there
+    bool isValid = isPalindrome(head, runner, length, offset);
+
+    if (isValid == false) { // if any of the pairis returns false, the list is not a palindrome
+        return false;
+    }
+
+    *offset += 1;
+    // we need to check only the half of the list
+    if (*offset > *length/2) {
+        return true;
+    }
+
+    // check the pair of elements that have the same distance from/to the middle
+    if (head->data != runner->data) {
+        return false;
+    }
+
+    // move to the next element
+    head = head->next;
+
+    return true;
+}
 
 int main(void) {
     node *list = makeList();
     printf("Your list: ");
     printList(list);
 
+    int length = 0, offset = 0;
+    printf("This is %s\n", isPalindrome(list, list, &length, &offset) ? "a palindrome" : "not a palindrome");
     return 0;
 }
