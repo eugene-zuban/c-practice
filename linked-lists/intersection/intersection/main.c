@@ -15,7 +15,13 @@ typedef struct node {
 
 #define LIST_END (node *) 0
 
-int getSize(node *head) {
+int listLength(node *head);
+node *moveHead(node *head, int steps);
+node *makeList();
+void printList(node *head);
+void printListBack(node *head);
+
+int listLength(node *head) {
     int i = 0;
 
     while (head != LIST_END) {
@@ -69,7 +75,7 @@ node *makeList() {
     return head;
 }
 
-void printListBack(node *head) {
+void printList(node *head) {
     while (head != LIST_END) {
         printf("%d\n", head->data);
         head = head->next;
@@ -78,19 +84,37 @@ void printListBack(node *head) {
     printf("\n");
 }
 
-void printBack(node *head) {
+void printListBack(node *head) {
     if (head != LIST_END) {
-        printBack(head->next);
+        printListBack(head->next);
         printf("%d\n", head->data);
     }
 }
 
 int main(void) {
-    node *list1, *list2;
+    node *list1 = LIST_END, *list2 = LIST_END;
 
+    puts("Filling the first list");
     list1 = makeList();
-    printListBack(list1);
-    printBack(list1);
+
+    puts("Filling the second list");
+    list2 = makeList();
+
+    // adjusting the length of the lists by "cutting" the extra elements from the beginning of the list
+    int length1 = listLength(list1);
+    int length2 = listLength(list2);
+ 
+    if (length1 > length2) {
+        list1 = moveHead(list1, length1 - length2);
+    } else {
+        list2 = moveHead(list2, length2 - length1);
+    }
+
+    puts("Adjusted first list");
+    printList(list1);
+
+    puts("Adjusted second list");
+    printList(list2);
 
     return 0;
 }
