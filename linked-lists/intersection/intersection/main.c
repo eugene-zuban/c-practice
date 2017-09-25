@@ -18,6 +18,7 @@ typedef struct node {
 int listLength(node *head);
 node *moveHead(node *head, int steps);
 node *makeList();
+node *getIntersection(node *list1, node *list2);
 void printList(node *head);
 void printListBack(node *head);
 void makeIntersection(node *list1, node *list2, int elementsToMerge);
@@ -113,6 +114,29 @@ void makeIntersection(node *list1, node *list2, int intersectLength) {
     list1->next = list2;
 }
 
+// checking for an intersection using recursive approach
+// assuming that list1 and list2 have the same length (which was done before the first call)
+node *getIntersection(node *list1, node *list2) {
+    if (list1 == LIST_END) {
+        return LIST_END;
+    }
+
+    // using recursive call get to the end of the list and check for an intersection from the end
+    node *intersection = getIntersection(list1->next, list2->next);
+
+    // if we have already a node that represents intersection start OR if it's the last node
+    if (intersection != LIST_END || list1->next == LIST_END) {
+        if (&list1 == &list2) { // if current elements point to the same node, make it a new intersection start
+            return list1;
+        }
+
+        // return previous intersection start node
+        return intersection;
+    }
+
+    return LIST_END; // no matches, return empty node
+}
+
 int main(void) {
     node *list1 = LIST_END, *list2 = LIST_END;
     int intersectLength = 0;
@@ -138,12 +162,9 @@ int main(void) {
     } else {
         list2 = moveHead(list2, length2 - length1);
     }
-    
-    puts("Adjusted first list");
-    printList(list1);
 
-    puts("Adjusted second list");
-    printList(list2);
+    printf("Intersection: ");
+    printList(getIntersection(list1, list2));
 
     return 0;
 }
