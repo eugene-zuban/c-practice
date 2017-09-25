@@ -43,4 +43,4 @@ This repo includes small solutions written on C using different sources for idea
 
 8. [Palindrome](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/palindrome/palindrome/main.c) determine if a given linked list is a palindrome.
 
-9. [intersection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/intersection/intersection/main.c) find if two linked list intersects sharing the same nodes by references.
+9. [Intersection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/intersection/intersection/main.c) find if two linked list intersects sharing the same nodes by references.
