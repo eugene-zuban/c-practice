@@ -42,3 +42,5 @@ This repo includes small solutions written on C using different sources for idea
 6. [Sum linked lists](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/sum-lists/sum-lists/main.c) add two linked lists which represent integer numbers and write the result into a linked list using left to right numbers order. Example: (1 -> 3 -> 5) + (2 -> 3 -> 4) = (3 -> 6 -> 9) represents 135 + 234 = 369.
 
 8. [Palindrome](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/palindrome/palindrome/main.c) determine if a given linked list is a palindrome.
+
+9. [intersection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/intersection/intersection/main.c) find if two linked list intersects sharing the same nodes by references.
