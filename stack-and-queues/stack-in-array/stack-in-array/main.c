@@ -123,7 +123,7 @@ int peek (stack *arrayStack, int stackId) {
 
 // return current top index for a specified stack
 int topIndex(stack *arrayStack, int stackId) {
-    int offset = arrayStack->stackSize * (stackId - 1); // the first stack has offset 0
+    int offset = arrayStack->stackSize * (stackId); // the first stack has offset 0
 
     return offset + arrayStack->sizes[stackId] - 1; 
 }
