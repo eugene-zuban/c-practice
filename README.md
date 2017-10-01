@@ -50,5 +50,5 @@ This repo includes small solutions written on C using different sources for idea
 10. [Loop detection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/loop-detection/loop-detection/main.c) find if a given list has a loop, and return the loop head if it exists.
 
 
-##Stack and queue**
+**Stack and queue**
 1. [Three stacks in one array](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-in-array/stack-in-array/main.c) Implement three stacks using a single array.
