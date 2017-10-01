@@ -9,6 +9,7 @@ This repo includes small solutions written on C using different sources for idea
 
 ### Solutions to the "Cracking the Coding Interview" tasks.
 
+
 **Arrays and Strings**
 1. [String unique characters check:](https://github.com/jack-zuban/c-practice/tree/master/array-and-strings/unique-characters/unique-characters/main.c) Determine if given string has all unique characters.
 
@@ -28,6 +29,7 @@ This repo includes small solutions written on C using different sources for idea
 
 9. [String Rotation Check:](https://github.com/jack-zuban/c-practice/blob/master/array-and-strings/string-rotation/string-rotation/main.c) Given two strings s1 and s2, check if s2 is a rotation of s1.
 
+
 **Linked Lists**
 1. [Remove duplicates:](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/remove-duplicates/remove-duplicates/main.c) Remove duplicates from a linked list.
 
@@ -46,3 +48,7 @@ This repo includes small solutions written on C using different sources for idea
 9. [Intersection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/intersection/intersection/main.c) find if two linked list intersects sharing the same nodes by references.
 
 10. [Loop detection](https://github.com/jack-zuban/c-practice/blob/master/linked-lists/loop-detection/loop-detection/main.c) find if a given list has a loop, and return the loop head if it exists.
+
+
+##Stack and queue**
+1. [Three stacks in one array](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-in-array/stack-in-array/main.c) Implement three stacks using a single array.
