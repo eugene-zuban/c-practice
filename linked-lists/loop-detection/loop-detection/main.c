@@ -31,7 +31,7 @@ node *makeList() {
     scanf("%d", &items);
 
     for (int i = 1; i <= items; i++) {
-        node *item = (node *) malloc(sizeof(node *));
+        node *item = (node *) malloc(sizeof(node));
         if (item == NULL) {
             printf("Memory allocation error\n");
             exit(EXIT_FAILURE);
