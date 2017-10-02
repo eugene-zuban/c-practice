@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
+typedef struct nodeItem {
     int data;
-    struct node *next;
+    struct nodeItem *next;
 } node;
 
 #define LIST_END (node *) 0
