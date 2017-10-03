@@ -52,3 +52,5 @@ This repo includes small solutions written on C using different sources for idea
 
 **Stack and queue**
 1. [Three stacks in one array](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-in-array/stack-in-array/main.c) Implement three stacks using a single array.
+
+2. [Stack min()](https://github.com/jack-zuban/c-practice/tree/master/stack-and-queues/stack-min/stack-min) Add min() function to a stack implementation which returns the minimum element from the stack in O(1) time.
