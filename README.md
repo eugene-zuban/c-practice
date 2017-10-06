@@ -54,3 +54,7 @@ This repo includes small solutions written on C using different sources for idea
 1. [Three stacks in one array](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-in-array/stack-in-array/main.c) Implement three stacks using a single array.
 
 2. [Stack min()](https://github.com/jack-zuban/c-practice/tree/master/stack-and-queues/stack-min/stack-min) Add min() function to a stack implementation which returns the minimum element from the stack in O(1) time.
+
+3. [Stack of plates](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-of-plates/stack-of-plates/main.c) Implement a data structure that will work as a stack of plates using fixed-size stacks for storing nodes. pop() and push() on the stack of plates structure should function identically to a regular stack.
+
+4. [Queue via Stacks](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/queue-via-stacks/queue-via-stacks/main.c) Implement a queue that will use two stacks for its nodes.
