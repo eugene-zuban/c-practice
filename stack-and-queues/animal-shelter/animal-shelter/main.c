@@ -86,12 +86,12 @@ animal dequeueCat(void) {
 // return the oldest cat or dog from the shelter
 animal dequeueAny(void) {
     if (shelter.dogs == LIST_END && shelter.cats != LIST_END) {
-        return dequeueDog();
-    } else if (shelter.cats == LIST_END && shelter.dogs != LIST_END) {
         return dequeueCat();
+    } else if (shelter.cats == LIST_END && shelter.dogs != LIST_END) {
+        return dequeueDog();
     }
 
-    if (peek(shelter.dogs)->order > peek(shelter.cats)->order) {
+    if (peek(shelter.dogs)->order < peek(shelter.cats)->order) {
         return dequeueDog();
     }
 
@@ -154,26 +154,54 @@ animal take(animalList **listHead) {
 void testShelter(void) {
     printf("Test shelter queue and all the supporting structires.\n");
     
-    animal dogs[9];
-    animal cats[9];
+    animal dogs[10]; 
+    animal cats[10];
 
-    printf("Adding a dog %s to the shelter.\n", dog1.name);
-    enqueue(dog1);
+    for (int i = 0; i < 10; i++) {
+        char *dogName = (char *) calloc(20, sizeof(char)), *catName = (char *) calloc(20, sizeof(char));
 
-    printf("Adding a dog %s to the shelter.\n", dog2.name);
-    enqueue(dog2);
-       
-    printf("Adding a dog %s to the shelter.\n", dog3.name);
-    enqueue(dog3);
+        sprintf(dogName, "Dog %i", i + 1);
+        dogs[i].name = dogName;
+        dogs[i].type = dog;
 
-    printf("");
+        sprintf(catName, "Cat %i", i + 1);
+        cats[i].name = catName;
+        cats[i].type = cat;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("Adding a dog %s to the shelter.\n", dogs[i].name);
+        enqueue(dogs[i]);
+    }
+    for (int i = 0; i < 3; i++) {
+        printf("Take a dog. Expected: Dog %i, actual %s\n", i + 1, dequeueDog().name);
+    }
+    
+    for (int i = 0; i < 3; i++) {
+        printf("Adding a cat %s to the shelter.\n", cats[i].name);
+        enqueue(cats[i]);
+    }
+    for (int i = 0; i < 3; i++) {
+        printf("Take a cat. Expected: Cat %i, actual %s\n", i + 1, dequeueCat().name);
+    }
+
+    printf("\nAdd all cats and dogs to the shelter:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("Adding cat %s\n", cats[i].name);
+        enqueue(cats[i]);
+
+        printf("Adding dog %s\n", dogs[i].name);
+        enqueue(dogs[i]);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        printf("Take a pet. Expected index: %i, actual name: %s\n", i + 1, dequeueAny().name);
+        printf("Take a pet. Expected index: %i, actual name: %s\n", i + 1, dequeueAny().name);
+    }   
 }
+
 int main(void) {
     testShelter();
-
-    printf("Take a dog. The dog is: %s\n", dequeueDog().name);
-    printf("Take a dog. The dog is: %s\n", dequeueDog().name);
-    printf("Take a dog. The dog is: %s\n", dequeueDog().name);
 
     return 0;
 }
