@@ -20,6 +20,7 @@ void push(stack **s, int value);
 int pop(stack **s);
 bool isEmpty(stack *s);
 
+// peek a node from the stack
 int peek(stack *s) {
     if (isEmpty(s)) {
         fprintf(stderr, "Stack is empty\n");
@@ -29,6 +30,7 @@ int peek(stack *s) {
     return s->value;
 }
 
+// push a node to the stack
 void push(stack **s, int value) {
     stack *newNode = (stack *) malloc(sizeof(stack));
     if (newNode == NULL) {
@@ -41,6 +43,7 @@ void push(stack **s, int value) {
     *s = newNode;
 }
 
+// remove a node from the stack and return its value
 int pop(stack **s) {
     if (isEmpty(*s)) {
         fprintf(stderr, "Stack is empty\n");
@@ -62,9 +65,11 @@ bool isEmpty(stack *s) {
 stack *sort(stack **unsorted) {
     stack *sorted = STACK_END;
 
+    // sorting: take a node from the unsorted stack and put it to the sorted one
+    // checking that all nodes in the sorted stack will be sorted
     while (! isEmpty(*unsorted)) {
         int temp = pop(unsorted);
-        
+
         while (! isEmpty(sorted) && temp > peek(sorted)) {
             push(unsorted, pop(&sorted));
         }
