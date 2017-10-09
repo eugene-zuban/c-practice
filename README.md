@@ -58,3 +58,5 @@ This repo includes small solutions written on C using different sources for idea
 3. [Stack of plates](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/stack-of-plates/stack-of-plates/main.c) Implement a data structure that will work as a stack of plates using fixed-size stacks for storing nodes. pop() and push() on the stack of plates structure should function identically to a regular stack.
 
 4. [Queue via Stacks](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/queue-via-stacks/queue-via-stacks/main.c) Implement a queue that will use two stacks for its nodes.
+
+5. [Sort a stack](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/sort-stack/sort-stack/main.c) Sort a given stack using only one additional temp stack.
