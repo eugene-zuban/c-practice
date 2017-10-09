@@ -60,3 +60,5 @@ This repo includes small solutions written on C using different sources for idea
 4. [Queue via Stacks](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/queue-via-stacks/queue-via-stacks/main.c) Implement a queue that will use two stacks for its nodes.
 
 5. [Sort a stack](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/sort-stack/sort-stack/main.c) Sort a given stack using only one additional temp stack.
+
+6. [Animal Shelter](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/animal-shelter/animal-shelter/main.c) A FIFO queue that accepts dogs and cats and returns the "oldest" cat or dog as requested.
