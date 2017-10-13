@@ -11,13 +11,14 @@
 #define EMPTY_NODE (struct node *) 0
 #define ADJ_LIST_END (struct adjListNode *) 0
 
-enum status {unvisited, visited, visiting};
+enum statuses {unvisited, visited, visiting};
 
 // vertex node
 struct node {
     int nodeId;
-    enum status statuses;
+    enum statuses status;
 
+    struct node *next; // for supporting queue
     struct adjListNode *adjList; // holding all the edges/adjacencies
 };
 
@@ -40,6 +41,12 @@ struct adjListNode *createAdjNode(int destNodeId) {
 struct graph {
     int vertices;
     struct node *nodes;
+};
+
+// a queue for BFS
+struct queue {
+    struct node *head;
+    struct node *tail;
 };
 
 // create a new graph with number of node = vertices and empty adjacency lists
@@ -69,6 +76,7 @@ void addEdge(struct graph *g, int srcNodeId, int dstNodeId) {
     g->nodes[srcNodeId].adjList = newNode;
 }
 
+// printing the graph and all its nodes adjacencies
 void printGraph(struct graph *g) {
     for (int i = 0; i < g->vertices; i++) {
         struct node *v = (g->nodes + i);
@@ -83,6 +91,62 @@ void printGraph(struct graph *g) {
 
         printf("\n");
     }
+}
+
+// create a new queue for storing graph's nodes during BFS
+struct queue *createQueue(void) {
+    struct queue *q = malloc(sizeof(struct queue));
+    q->head = EMPTY_NODE;
+    q->tail = EMPTY_NODE;
+
+    return q;
+}
+
+// add a new node to the queue and update tail and head
+void queueAdd(struct queue **q, struct node *n) {
+    if ((*q)->tail == EMPTY_NODE) {
+        (*q)->head = n;
+        (*q)->tail = (*q)->head;
+    } else {
+        (*q)->tail->next = n;
+    }
+
+    n->next = EMPTY_NODE;
+}
+
+// remove the first node from the queue and move the head
+struct node *removeFirstFromQueue(struct queue **q) {
+    if ((*q)->head == EMPTY_NODE) {
+        return EMPTY_NODE;
+    }
+
+    struct node *n = (*q)->head;
+    (*q)->head = (*q)->head->next;
+
+    return n;
+}
+
+// check if queue is empty
+bool isQueueEmpty(struct queue *q) {
+    return q->head == EMPTY_NODE;
+}
+
+bool searchRoute(struct graph *g, int start, int end) {
+    if (start == end) {
+        return true;
+    }
+
+    // mark all nodes as unvisited
+    for (int i = 0; i < g->vertices; i++) {
+        (g->nodes + i)->status = unvisited;
+    }
+
+    // put the start node into the queue
+    struct queue *q = createQueue();
+    queueAdd(&q, (g->nodes + start));
+    (g->nodes + start)->status = visited;
+
+    return false;
 }
 
 int main(void) {
