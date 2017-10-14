@@ -123,6 +123,11 @@ struct node *removeFirstFromQueue(struct queue **q) {
     struct node *n = (*q)->head;
     (*q)->head = (*q)->head->next;
 
+    // set tail to EMPTY_NODE in case of empty queue
+    if ((*q)->head == EMPTY_NODE) {
+        (*q)->tail = EMPTY_NODE;
+    }
+
     return n;
 }
 
@@ -138,24 +143,46 @@ bool searchRoute(struct graph *g, int start, int end) {
 
     // mark all nodes as unvisited
     for (int i = 0; i < g->vertices; i++) {
-        (g->nodes + i)->status = unvisited;
+        g->nodes[i].status = unvisited;
     }
 
     // put the start node into the queue
     struct queue *q = createQueue();
-    queueAdd(&q, (g->nodes + start));
-    (g->nodes + start)->status = visited;
+    queueAdd(&q, &(g->nodes[start]));
+    g->nodes[start].status = visiting;
+
+    while(! isQueueEmpty(q)) {
+        struct node *root = removeFirstFromQueue(&q);
+        if (root != EMPTY_NODE) {
+            struct adjListNode *adjacency = root->adjList;
+
+            while (adjacency != ADJ_LIST_END) {
+                struct node *child = &(g->nodes[adjacency->destNode]);
+                if (child->status == unvisited) {
+                    if (child->nodeId == end) {
+                        return true;
+                    }
+
+                    child->status = visiting;
+                    queueAdd(&q, child);
+                }
+
+                adjacency = adjacency->next;
+            }
+        }
+
+        root->status = visited;
+    }
 
     return false;
 }
 
 int main(void) {
-    struct graph *g = createGraph(5);
-    addEdge(g, 0, 1);
-    addEdge(g, 0, 4);
-    addEdge(g, 1, 2);
-    addEdge(g, 2, 3);
-    addEdge(g, 3, 4);
+    struct graph *g = createGraph(6);
+    addEdge(g, 0, 3);
+    addEdge(g, 1, 3);
+    addEdge(g, 3, 5);
+    addEdge(g, 2, 4);
     addEdge(g, 4, 5);
  
     printGraph(g);
