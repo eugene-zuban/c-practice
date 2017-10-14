@@ -12,29 +12,29 @@
 
 enum statuses {unvisited, visited, visiting};
 
-// vertex node
+// A graph node (vertex)
 struct node {
     int nodeId;
     int edgesCount;
     enum statuses status;
 
     struct node *next; // for supporting queue
-    struct node **edgeNodes; // holding adjacency nodes
+    struct node **children; // holding adjacency nodes
 };
  
-// A structure to represent a directed graph. A graph is a list (array of adjacency lists)
+// A structure to represent a graph
 struct graph {
     int vertices;
     struct node *nodes;
 };
 
-// a queue for BFS
+// queue for supporting BSF search
 struct queue {
     struct node *head;
     struct node *tail;
 };
 
-// create a new graph with number of node = vertices and empty adjacency lists
+// create a new graph with all the nodes
 struct graph *createGraph(int vertices) {
     struct graph *newGraph = (struct graph *) malloc(sizeof(struct graph));
 
@@ -42,12 +42,11 @@ struct graph *createGraph(int vertices) {
     newGraph->vertices = vertices;
     newGraph->nodes = (struct node *) malloc(vertices * sizeof(struct node));
 
+    // init all the nodes
     for (int i = 0; i < vertices; i++) {
-        struct node *nd = newGraph->nodes;
-
         newGraph->nodes[i].nodeId = i;
         newGraph->nodes[i].edgesCount = 0;
-        newGraph->nodes[i].edgeNodes = (struct node **) malloc(vertices * sizeof(struct node *)); // by default no adjacencies
+        newGraph->nodes[i].children = (struct node **) malloc(vertices * sizeof(struct node *));
         newGraph->nodes[i].next = EMPTY_NODE; // for supporting queue
     }
 
@@ -57,12 +56,13 @@ struct graph *createGraph(int vertices) {
 // add new edge to the directed graph g
 void addEdge(struct graph *g, int srcNodeId, int dstNodeId) {
     struct node *parentNode = &(g->nodes[srcNodeId]);
+    struct node *child = &(g->nodes[dstNodeId]);
 
-    parentNode->edgeNodes[parentNode->edgesCount] = &(g->nodes[dstNodeId]);
+    parentNode->children[parentNode->edgesCount] = child;
     parentNode->edgesCount++;
 }
 
-// printing the graph and all its nodes adjacencies
+// print the graph and all its nodes adjacencies
 void printGraph(struct graph *g) {
     for (int i = 0; i < g->vertices; i++) {
         struct node *v = &(g->nodes[i]);
@@ -70,7 +70,7 @@ void printGraph(struct graph *g) {
         printf("Adjacency list of vertex (node) %i:\n", v->nodeId);
         printf("\thead");
         for (int i = 0; i < v->edgesCount; i++) {
-            printf(" -> %i", v->edgeNodes[i]->nodeId);
+            printf(" -> %i", v->children[i]->nodeId);
         }
 
         printf("\n");
@@ -139,7 +139,7 @@ bool searchRoute(struct graph *g, int start, int end) {
         struct node *root = removeFirstFromQueue(&q);
         if (root != EMPTY_NODE) {
             for (int i = 0; i < root->edgesCount; i++) {
-                struct node *child = root->edgeNodes[i];
+                struct node *child = root->children[i];
                 if (child->status == unvisited) {
                     if (child->nodeId == end) {
                         return true;
@@ -166,6 +166,11 @@ int main(void) {
     addEdge(g, 4, 5);
  
     printGraph(g);
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            printf("Route between node %i and node %i: %s\n", i, j, searchRoute(g, i, j) ? "exists" : "doesn't exist");
+        }
+    }
  
     return 0;
 }
