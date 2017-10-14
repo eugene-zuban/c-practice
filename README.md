@@ -62,3 +62,6 @@ This repo includes small solutions written on C using different sources for idea
 5. [Sort a stack](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/sort-stack/sort-stack/main.c) Sort a given stack using only one additional temp stack.
 
 6. [Animal Shelter](https://github.com/jack-zuban/c-practice/blob/master/stack-and-queues/animal-shelter/animal-shelter/main.c) A FIFO queue that accepts dogs and cats and returns the "oldest" cat or dog as requested.
+
+**Trees and Graphs**
+1. [Route between nodes](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/route-between-nodes/route-between-nodes/main.c). Find if there is a route between two nodes in a given directed graph.
