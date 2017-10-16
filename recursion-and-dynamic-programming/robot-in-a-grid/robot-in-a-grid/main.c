@@ -104,8 +104,19 @@ void addPointToPath(struct Point *point, struct Path **pathHead) {
     }
 
     newPath->point = point;
-    newPath->next = *pathHead;
-    *pathHead = newPath;
+    newPath->next = NULL_PATH;
+
+    // add to the end
+    if (*pathHead == NULL_PATH) {
+        *pathHead = newPath;
+    } else {
+        struct Path *path = *pathHead;
+        while (path->next != NULL_PATH) {
+            path = path->next;
+        }
+
+        path->next = newPath;
+    }
 }
 
 // return path if exists
@@ -169,8 +180,9 @@ int main(void) {
 
     printf("The path is: ");
     while (path != NULL_PATH) {
-        printf("-> point(%i, %i)", path->point->row, path->point->col);
+        printf("(%i, %i)", path->point->row, path->point->col);
         path = path->next;
+        printf("%s", path != NULL_PATH ? " -> " : "");
     }
     printf("\n");
     
