@@ -28,7 +28,7 @@ struct Cache {
 
 // path-list related functions
 struct Path *createEmptyPath(void);
-bool getPath(int rowsNumber, int colsNumber, bool maze[rowsNumber][colsNumber], int rowIndex, int colIndex, struct Path *path, struct Cache *cache[]);
+bool getPath(int rowsNumber, int colsNumber, bool maze[rowsNumber][colsNumber], int rowIndex, int colIndex, struct Path **path, struct Cache *cache[]);
 void addPointToPath(struct Point *point, struct Path **path);
 
 // cache related functions
@@ -117,7 +117,7 @@ struct Path *findPath(const int rows, const int cols, bool maze[rows][cols]) {
     struct Path *path = NULL_PATH;
     struct Cache **cache = initializeCacheHashTable(rows * cols);
 
-    if (getPath(rows, cols, maze, rows - 1, cols - 1, path, cache)) {
+    if (getPath(rows, cols, maze, rows - 1, cols - 1, &path, cache)) {
         return path;
     }
 
@@ -143,8 +143,8 @@ bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colInd
     bool isPathReachable = false;
 
     // recursively check all the previous points paths till the start of the maze (row 0, col 0)
-    if (isAtOrigin || getPath(rows, cols, maze, rowIndex - 1, colIndex, path, cache)
-            || getPath(rows, cols, maze, rowIndex, colIndex - 1, path, cache)) {
+    if (isAtOrigin || getPath(rows, cols, maze, rowIndex - 1, colIndex, &path, cache)
+            || getPath(rows, cols, maze, rowIndex, colIndex - 1, &path, cache)) {
         addPointToPath(point, &path); // add the current point to the path list
         isPathReachable = true;   
     }
