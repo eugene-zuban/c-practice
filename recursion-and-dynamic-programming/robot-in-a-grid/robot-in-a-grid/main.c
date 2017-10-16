@@ -125,7 +125,7 @@ struct Path *findPath(const int rows, const int cols, bool maze[rows][cols]) {
 }
 
 // check if a path to a given point in the maze exists
-bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colIndex, struct Path *path, struct Cache *cache[]) {
+bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colIndex, struct Path **path, struct Cache *cache[]) {
     // if out of range or the cell is "closed"
     if (rowIndex < 0 || colIndex < 0 || ! maze[rowIndex][colIndex]) {
         return false;
@@ -143,9 +143,9 @@ bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colInd
     bool isPathReachable = false;
 
     // recursively check all the previous points paths till the start of the maze (row 0, col 0)
-    if (isAtOrigin || getPath(rows, cols, maze, rowIndex - 1, colIndex, &path, cache)
-            || getPath(rows, cols, maze, rowIndex, colIndex - 1, &path, cache)) {
-        addPointToPath(point, &path); // add the current point to the path list
+    if (isAtOrigin || getPath(rows, cols, maze, rowIndex - 1, colIndex, path, cache)
+            || getPath(rows, cols, maze, rowIndex, colIndex - 1, path, cache)) {
+        addPointToPath(point, path); // add the current point to the path list
         isPathReachable = true;   
     }
 
