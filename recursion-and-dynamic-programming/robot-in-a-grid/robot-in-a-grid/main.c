@@ -40,7 +40,7 @@ void cachePathToPoint(struct Cache *cache[], struct Point *point, bool isPathRea
 
 void testFindingPath(void);
 
-// create cache hash table and set all its entries to null
+// create a cache hash table and set all its entries to null
 struct Cache **initializeCacheHashTable(int cacheSize) {
     struct Cache **cache = (struct Cache **) malloc(cacheSize * sizeof(struct Cache *));
 
@@ -51,25 +51,23 @@ struct Cache **initializeCacheHashTable(int cacheSize) {
     return cache;
 }
 
-// HASH function
+// hash function
 int computeHash(struct Point *point) {
-    return 5 * (point->row) + (point->col);
+    return (point->row + 1) * (point->col + 1) - 1;
 }
 
-// check if the point is in the cache table
+// check if provided point is in the cache table
 bool isPathToPointCached(struct Cache *cache[], struct Point *point) {
     return cache[computeHash(point)] != NULL_CACHE;
 }
 
-// return cached path to point status
+// return cached path-to-point reachable status
 bool getIsPointReachableFromCache(struct Cache *cache[], struct Point *point) {
     return cache[computeHash(point)]->hasPath;
 }
 
-// cache if path to the point exist result
+// cache isPathReachable for given point
 void cachePathToPoint(struct Cache *cache[], struct Point *point, bool isPathReachable) {
-    int cachIndex = computeHash(point);
-
     // allocate memory for cache
     struct Cache *cacheEntry = (struct Cache *) malloc(sizeof(struct Cache));
     if (cacheEntry == NULL) {
@@ -81,7 +79,7 @@ void cachePathToPoint(struct Cache *cache[], struct Point *point, bool isPathRea
     cache[computeHash(point)] = cacheEntry;
 }
 
-// create new point using row and col indexes
+// create a new point using row and col indexes
 struct Point *createNewPoint(rowIndex, colIndex) {
     struct Point *point = (struct Point *) malloc(sizeof(struct Point));
     if (point == NULL) {
@@ -95,7 +93,7 @@ struct Point *createNewPoint(rowIndex, colIndex) {
     return point;
 }
 
-// struct Path represents a linked list where each point represents a route/path.
+// add reachable point to the path structure
 void addPointToPath(struct Point *point, struct Path **pathHead) {
     struct Path *newPath = (struct Path *) malloc(sizeof(struct Path));
     if (newPath == NULL) {
@@ -125,7 +123,10 @@ struct Path *findPath(const int rows, const int cols, bool maze[rows][cols]) {
         return NULL_PATH;
     }
 
+    // path to NULL by default
     struct Path *path = NULL_PATH;
+
+    // use cache for performance
     struct Cache **cache = initializeCacheHashTable(rows * cols);
 
     if (getPath(rows, cols, maze, rows - 1, cols - 1, &path, cache)) {
@@ -160,7 +161,7 @@ bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colInd
         isPathReachable = true;   
     }
 
-    // add the current path to point reachable status to the cache for the future use
+    // add the current path to point reachable status into cache for the future use
     cachePathToPoint(cache, point, isPathReachable);
 
     return isPathReachable;
