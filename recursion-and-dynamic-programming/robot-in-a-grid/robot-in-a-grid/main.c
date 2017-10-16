@@ -71,7 +71,14 @@ void cachePathToPoint(struct Cache *cache[], struct Point *point, bool isPathRea
     int cachIndex = computeHash(point);
 
     // allocate memory for cache
-    cache[computeHash(point)]->hasPath = isPathReachable;
+    struct Cache *cacheEntry = (struct Cache *) malloc(sizeof(struct Cache));
+    if (cacheEntry == NULL) {
+        fprintf(stderr, "Memory alloc error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    cacheEntry->hasPath = isPathReachable;
+    cache[computeHash(point)] = cacheEntry;
 }
 
 // create new point using row and col indexes
