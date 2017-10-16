@@ -169,11 +169,11 @@ bool getPath(int rows, int cols, bool maze[rows][cols], int rowIndex, int colInd
 int main(void) {
     // some testing;
     bool maze[5][5] = {
-        {true, true, true, true, true},
-        {true, true, true, true, true},
-        {true, true, true, true, true},
-        {true, true, true, true, true},
-        {true, true, true, true, true},
+        {1, 0, 1, 1, 1},
+        {1, 1, 0, 1, 1},
+        {1, 1, 1, 0, 1},
+        {1, 1, 1, 1, 0},
+        {1, 1, 1, 1, 1},
     };
 
     struct Path *path = findPath(5, 5, maze);
