@@ -16,9 +16,10 @@ struct hash {
     struct hash *next;
 };
 
-// anagrams-related functionality
+// anagrams-related function
 void groupAnagrams(char *array[], int arraySize);
 
+// implementing quick sort
 void sort(char arr[], int left, int right);
 int partition(char arr[], int left, int right);
 void copyString(char *from, char *to);
@@ -56,6 +57,7 @@ int partition(char string[], int left, int right) {
             right--;
         }
 
+        // swap elements
         if (left <= right) {
             char temp = string[left];
             string[left] = string[right];
@@ -68,15 +70,16 @@ int partition(char string[], int left, int right) {
     return left;
 }
 
+// copy string char by char
 void copyString(char *from, char *to) {
     while (*from != '\0') {
         *(to++) = *(from++);
     }
 
-    *to = '\0';
+    *to = '\0'; // end the string
 }
 
-// create hash table with size HASH_SIZE
+// create hash map table with size HASH_SIZE for storing lists of anagrams
 struct hash **initHashMapTable(void) {
     struct hash **hashTable = (struct hash **) malloc(HASH_SIZE * sizeof(struct hash *));
     for (int i = 0; i < HASH_SIZE; i++) {
@@ -91,7 +94,7 @@ int hashKey(char *s) {
     int key = 0;
     int position = 0;
 
-    // use a character position on the s string for computing string's unique key
+    // use a character position on the string for computing a unique key
     while (*s != '\0') {
         key += (int) *s * (position + 1);
         s++;
@@ -101,10 +104,10 @@ int hashKey(char *s) {
     return key % HASH_SIZE - 1;
 }
 
-// add given string to the headh of the list in the hash table with index = key
+// add given string to the head of the list in the hash map table with index = key
 void addStringToHash(struct hash **hashTable, char *s, int key) {
     if (key < 0 || key > HASH_SIZE - 1) {
-        fprintf(stderr, "Provided hash jey is out of hash table range.");
+        fprintf(stderr, "Provided hash key is out of hash table range.");
         exit(EXIT_FAILURE);
     }
 
@@ -129,9 +132,9 @@ void groupAnagrams(char *array[], int arraySize) {
         char *sortedAnagram = (char *) calloc(strlen(array[i]) + 1, sizeof(char));
         copyString(array[i], sortedAnagram);
 
-        sort(sortedAnagram, 0, strlen(sortedAnagram) - 1); // sort the anagram
+        sort(sortedAnagram, 0, (int) strlen(sortedAnagram) - 1); // sort the anagram
         int key = hashKey(sortedAnagram); // compute the unique per string variant key
-        addStringToHash(hashMap, array[i], key); // strore the original string into the hash map under the key using linked list structure
+        addStringToHash(hashMap, array[i], key); // store the original string in the hash map under the key using linked list structure
     }
 
     // move anagrams from hashMap back to the array
@@ -147,9 +150,9 @@ void groupAnagrams(char *array[], int arraySize) {
 
 // printing array of strings
 void printArrayOfStrings(char *array[], int arraySize) {
-    printf("Printing the array of size %i:\n", arraySize);
+    printf("Printing array of size %i:\n", arraySize);
     for (int i = 0; i < arraySize; i++) {
-        printf("array[%i]: %s\n", i, array[i]);
+        printf("[%i]: %s\n", i, array[i]);
     }
 }
 
