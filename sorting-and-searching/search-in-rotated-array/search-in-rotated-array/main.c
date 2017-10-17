@@ -21,22 +21,22 @@ int search(int arr[], int left, int right, int x) {
     }
 
     if (arr[left] < arr[mid]) { // left side is sorted ok
-        if (x >= arr[left] && x < arr[mid]) { // search left
-            return search(arr, left, mid - 1, x);
+        if (x >= arr[left] && x < arr[mid]) {
+            return search(arr, left, mid - 1, x); // search left
         } else {
             return search(arr, mid + 1, right, x); // search right
         }
     } else if (arr[mid] < arr[left]) { // right side is sorted ok
-        if (x > arr[mid] && x <= arr[right]) { // search right
-            return search(arr, mid + 1, right, x);
-        } else { // search left
-            return search(arr, left, mid - 1, x);
+        if (x > arr[mid] && x <= arr[right]) {
+            return search(arr, mid + 1, right, x); // search right
+        } else {
+            return search(arr, left, mid - 1, x); // search left
         }
-    } else if (arr[mid] == arr[left]) { // duplicates in array
-        if (arr[mid] != arr[right]) { // if right side is not the same, search it
-            return search(arr, mid + 1, right, x);
-        } else { // search left
-            int result = search(arr, left, mid - 1, x);
+    } else if (arr[mid] == arr[left]) { // duplicates in the array
+        if (arr[mid] != arr[right]) {
+            return search(arr, mid + 1, right, x); // if right side is not the same, search it
+        } else {
+            int result = search(arr, left, mid - 1, x); // search left
 
             if (result == -1) { // search right if left doesn't have X element
                 return search(arr, mid + 1, right, x);
@@ -49,6 +49,7 @@ int search(int arr[], int left, int right, int x) {
     return -1; // no X in the array
 }
 
+// printing an int array
 void arrayPrint(int array[], int arraySize) {
     printf("Printing array:\n");
     for (int i = 0; i < arraySize; i++) {
@@ -74,10 +75,8 @@ int main(void) {
     int testArray2[] = {20, 30, 40, 50, 60, 10};
     arrayPrint(testArray2, sizeof(testArray2)/sizeof(int));
     printf("Index of element %i is %i\n", x, search(testArray2, 0, sizeof(testArray2)/sizeof(int) - 1, x));
-    
     x = 20;
     printf("Index of element %i is %i\n", x, search(testArray2, 0, sizeof(testArray2)/sizeof(int) - 1, x));
- 
     x = 30;
     printf("Index of element %i is %i\n", x, search(testArray2, 0, sizeof(testArray2)/sizeof(int) - 1, x));
     
