@@ -156,7 +156,7 @@ void printArrayOfStrings(char *array[], int arraySize) {
 int main(void) {
     int arraySize = 5;
     char *array[] = {"ab", "cd", "ba", "dc", "abcd"};
-    printArrayOfStrings(array, arraySize);   
+    printArrayOfStrings(array, arraySize);
 
     // grouping anagrams
     printf("Grouping the anagrams:\n");
