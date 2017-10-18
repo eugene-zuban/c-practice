@@ -33,7 +33,7 @@ struct node *makeMinimalBST(int nodesIds[], int left, int right) {
     }
 
     int mid = (left + right) / 2;
-    struct node *newNode = makeNewNode(mid);
+    struct node *newNode = makeNewNode(nodesIds[mid]);
     newNode->left = makeMinimalBST(nodesIds, left, mid - 1);
     newNode->right = makeMinimalBST(nodesIds, mid + 1, right);
 
@@ -42,17 +42,21 @@ struct node *makeMinimalBST(int nodesIds[], int left, int right) {
 
 void printTree(struct node *root) {
     if (root != EMPTY_NODE) {
-        printf("[%i] ", root->id);
         printTree(root->left);
+        printf("[%i] ", root->id);
         printTree(root->right);
+        printf(" >>> ");
+    } else {
         printf("\n");
     }
 }
 
 int main(int argc, const char * argv[]) {
-    int nodes[] = {1, 2, 3, 4, 5, 6, 7, 8};
-    struct node *minimalBst = makeMinimalBST(nodes, 0, 7);
+    int nodes[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    struct node *minimalBst = makeMinimalBST(nodes, 0, 14);
+    printf("In-order traversal printing (left branch, current node, and right branch):\n");
     printTree(minimalBst);
+    printf("\n");
 
     return 0;
 }
