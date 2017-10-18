@@ -67,4 +67,6 @@ This repo includes small solutions written on C using different sources for idea
 1. [Route between nodes:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/route-between-nodes/route-between-nodes/main.c) Find if there is a route between two nodes in a given directed graph.
 
 **Recursion and Dynamic programming**
-1. [Robot in a Grid path:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/robot-in-a-grid/robot-in-a-grid/main.c) Find a path from the top left to the bottom right corner for a robot in a MxN grid where the robot can move only right and down, and some cells on the grid are marked as closed.
+1. [Triple Step](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/triple-step/triple-step/main.c) Count how many possible ways a child can run up a staircase with n steps jumping 1, 2 or 3 steps at a time. Memorization solution.
+
+2. [Robot in a Grid path:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/robot-in-a-grid/robot-in-a-grid/main.c) Find a path from the top left to the bottom right corner for a robot in a MxN grid where the robot can move only right and down, and some cells on the grid are marked as closed.
