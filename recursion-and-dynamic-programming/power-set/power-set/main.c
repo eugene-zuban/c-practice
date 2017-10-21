@@ -1,6 +1,6 @@
 //
 //  main.c
-//  power-set: return all subsets of a set.
+//  power-set: return all subsets of a set using a binary mask approach for that.
 //
 
 #include <stdio.h>
@@ -16,6 +16,7 @@ struct Set {
 struct Set *getSetFromInt(int position, struct Set *set);
 struct Set **getSubset2(struct Set *set);
 
+// using binary mask for building all the subsets
 struct Set **getSubsets2(struct Set *set) {
     int numberOfSubsets = 1 << set->size;
     struct Set **allSubsets = (struct Set **) malloc(numberOfSubsets * sizeof(struct Set *) + 1); // +1 for marking end of the subsets
@@ -32,6 +33,7 @@ struct Set **getSubsets2(struct Set *set) {
     return allSubsets;
 }
 
+// create a set for a given position number
 struct Set *getSetFromInt(int position, struct Set *set) {
     struct Set *subset = (struct Set *) malloc(sizeof(struct Set));
     if (subset == NULL_SET) {
@@ -58,12 +60,9 @@ struct Set *getSetFromInt(int position, struct Set *set) {
 }
 
 int main(void) {
-    struct Set *original;
-    char *str = "abcd\0";
-    original->size = 4;
-    original->items = str;
-
-    struct Set **sets = getSubsets2(original);
+    char *str = "abcd";
+    struct Set original = { .items = str, .size = 4};
+    struct Set **sets = getSubsets2(&original);
 
     printf("Printing all subsets of a set: %s ", str);
 
