@@ -85,3 +85,5 @@ This repo includes small solutions written on C using different sources for idea
 3. [Search in Rotated Array:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/search-in-rotated-array/search-in-rotated-array/main.c) Return the index of a given element in a sorted array that has been rotated any number of times. Example: find 2 in {4, 5, 1, 2, 3}. Output 3 (index of 2 in the array).
 
 4. [Sorted Search, No Size:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-search-no-size/sorted-search-no-size/main.c) Given a list structure that holds only positive int elements in a sorted order. The structure can't provide the number of its elements, but it provides getElementAt(i) method that returns the element at index i in O(1) time. If i is out of the range, the method returns -1. Find the index at which given element X occurs in the structure or -1 if it doesn't exist.
+
+5. [Sparse Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sparse-search/sparse-search/main.c) Find the index of a given string in an array of sorted strings that is interspersed with empty strings.
