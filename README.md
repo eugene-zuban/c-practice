@@ -66,6 +66,8 @@ This repo includes small solutions written on C using different sources for idea
 **Trees and Graphs**
 1. [Route between nodes:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/route-between-nodes/route-between-nodes/main.c) Find if there is a route between two nodes in a given directed graph.
 
+2. [Minimal tree:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/minimal-tree/minimal-tree/main.c) Create a minimal binary search tree from a sorted (INC order) array with unique integers.
+
 **Recursion and Dynamic programming**
 1. [Triple Step:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/triple-step/triple-step/main.c) Count how many possible ways a child can run up a staircase with n steps jumping 1, 2 or 3 steps at a time. Memorization solution.
 
