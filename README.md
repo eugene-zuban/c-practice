@@ -87,3 +87,5 @@ This repo includes small solutions written on C using different sources for idea
 4. [Sorted Search, No Size:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-search-no-size/sorted-search-no-size/main.c) Given a list structure that holds only positive int elements in a sorted order. The structure can't provide the number of its elements, but it provides getElementAt(i) method that returns the element at index i in O(1) time. If i is out of the range, the method returns -1. Find the index at which given element X occurs in the structure or -1 if it doesn't exist.
 
 5. [Sparse Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sparse-search/sparse-search/main.c) Find the index of a given string in an array of sorted strings that is interspersed with empty strings.
+
+6. [Missing int:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/missing-int/missing-int/main.c) Given a file with four billion non-negative integers. Write an algorithm to generate a missing integer from the file using only 1GB of memory.
