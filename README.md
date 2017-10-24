@@ -73,6 +73,8 @@ This repo includes small solutions written on C using different sources for idea
 
 2. [Robot in a Grid path:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/robot-in-a-grid/robot-in-a-grid/main.c) Find a path from the top left to the bottom right corner for a robot in a MxN grid where the robot can move only right and down, and some cells on the grid are marked as closed.
 
+3. [Magic Index:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/magic-index/magic-index/main.c) Find a magic index if exists in a sorted array of unique integers. A magic index in an array A[0..n-1] is an index where A[i] = i.
+
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
 
