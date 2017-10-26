@@ -89,3 +89,5 @@ This repo includes small solutions written on C using different sources for idea
 5. [Sparse Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sparse-search/sparse-search/main.c) Find the index of a given string in an array of sorted strings that is interspersed with empty strings.
 
 6. [Missing int:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/missing-int/missing-int/main.c) Given a file with four billion non-negative integers. Write an algorithm to generate a missing integer from the file using only 1GB of memory.
+
+7. [Find Duplicates:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/find-duplicates/find-duplicates/main.c) Find and print all the duplocates in an array from 1..N where N is max 32000 assuming that the N is not known, and only 4K of memory is available.
