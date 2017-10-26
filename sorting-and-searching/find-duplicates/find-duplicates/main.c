@@ -13,14 +13,16 @@ unsigned char *createBitVector(int vectorSize);
 bool checkNum(unsigned char *vector, int num);
 void markNum(unsigned char *vector, int num);
 
+// create and initialize a bitVector
 unsigned char *createBitVector(int sizeInBits) {
-    int sizeInBytes = sizeInBits / 8 + 1;
+    int sizeInBytes = sizeInBits / 8 + 1; // space to hold all the bits in bytes
     unsigned char *vector = (unsigned char *) malloc(sizeInBytes * sizeof(unsigned char *));
     if (vector == NULL) {
         fprintf(stderr, "Memory alloc error\n");
         exit(EXIT_FAILURE);
     }
 
+    // fill with 0
     for (int i = 0; i < sizeInBytes; i++) {
         vector[i] = 0;
     }
@@ -35,7 +37,7 @@ void findDuplicates(int arr[], int arraySize) {
 
     for (int i = 0; i < arraySize; i++) {
         int num = arr[i];
-        int num0 = num - 1;
+        int num0 = num - 1; // because arr range starts from 1
 
         if (checkNum(bitVector, num0)) { // if bitVector has a corresponding to num bit, the num is duplicate
             printf("%i ", num);
@@ -47,16 +49,16 @@ void findDuplicates(int arr[], int arraySize) {
 
 // check if corresponding to num bit is set on bitvector
 bool checkNum(unsigned char *vector, int num) {
-    int byteNumber = num >> 3; // num / 8
-    int mask = 1 << (num & 7); // num % 8
+    int byteNumber = num >> 3; // div 8
+    int mask = 1 << (num & 7); // mod 8
 
     return (vector[byteNumber] & mask) != 0;
 }
 
 // set/mark corresponding to num bit in bitvector
 void markNum(unsigned char *vector, int num) {
-    int byteNumber = num >> 3;
-    int mask = 1 << (num & 7);
+    int byteNumber = num >> 3; // div 8
+    int mask = 1 << (num & 7); // mod 8
 
     vector[byteNumber] |= mask;
 }
