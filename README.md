@@ -66,10 +66,16 @@ This repo includes small solutions written on C using different sources for idea
 **Trees and Graphs**
 1. [Route between nodes:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/route-between-nodes/route-between-nodes/main.c) Find if there is a route between two nodes in a given directed graph.
 
+2. [Minimal tree:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/minimal-tree/minimal-tree/main.c) Create a minimal binary search tree from a sorted (INC order) array with unique integers.
+
 **Recursion and Dynamic programming**
 1. [Triple Step:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/triple-step/triple-step/main.c) Count how many possible ways a child can run up a staircase with n steps jumping 1, 2 or 3 steps at a time. Memorization solution.
 
 2. [Robot in a Grid path:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/robot-in-a-grid/robot-in-a-grid/main.c) Find a path from the top left to the bottom right corner for a robot in a MxN grid where the robot can move only right and down, and some cells on the grid are marked as closed.
+
+3. [Magic Index:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/magic-index/magic-index/main.c) Find a magic index if exists in a sorted array of unique integers. A magic index in an array A[0..n-1] is an index where A[i] = i.
+
+4. [Power Set:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/power-set/power-set/main.c) Return all subsets of a set using a binary mask approach for that.
 
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
@@ -77,3 +83,9 @@ This repo includes small solutions written on C using different sources for idea
 2. [Group Anagram:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/group-anagrams/group-anagrams/main.c) Sort an array of strings so that all anagrams will be next to each other.
 
 3. [Search in Rotated Array:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/search-in-rotated-array/search-in-rotated-array/main.c) Return the index of a given element in a sorted array that has been rotated any number of times. Example: find 2 in {4, 5, 1, 2, 3}. Output 3 (index of 2 in the array).
+
+4. [Sorted Search, No Size:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-search-no-size/sorted-search-no-size/main.c) Given a list structure that holds only positive int elements in a sorted order. The structure can't provide the number of its elements, but it provides getElementAt(i) method that returns the element at index i in O(1) time. If i is out of the range, the method returns -1. Find the index at which given element X occurs in the structure or -1 if it doesn't exist.
+
+5. [Sparse Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sparse-search/sparse-search/main.c) Find the index of a given string in an array of sorted strings that is interspersed with empty strings.
+
+6. [Missing int:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/missing-int/missing-int/main.c) Given a file with four billion non-negative integers. Write an algorithm to generate a missing integer from the file using only 1GB of memory.
