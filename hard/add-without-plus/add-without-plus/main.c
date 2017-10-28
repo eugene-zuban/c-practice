@@ -7,8 +7,8 @@
 #include <stdlib.h>
 
 int add(int a, int b) {
-    if ((a & b) == 0) {
-        return a | b;
+    if (b == 0) {
+        return a;
     }
     
     int sum = a ^ b;
