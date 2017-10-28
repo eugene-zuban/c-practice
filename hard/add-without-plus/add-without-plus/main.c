@@ -7,14 +7,16 @@
 #include <stdlib.h>
 
 int add(int a, int b) {
-    while ((a & b) != 0) {
-        int sum = a ^ b;
-        int carry = (a & b) << 1;
-        a = sum;
-        b = carry;
+    if ((a & b) == 0) {
+        return a | b;
     }
+    
+    int sum = a ^ b;
+    int carry = (a & b) << 1;
+    a = sum;
+    b = carry;
 
-    return a | b;
+    return add(a, b);
 }
 
 int main(void) {
