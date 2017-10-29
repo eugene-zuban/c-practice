@@ -169,7 +169,13 @@ list *getListFromDepth(tree *root, int currentDepth, int requestedDepth) {
         list *nodeRight = getListFromDepth(root->right, currentDepth, requestedDepth);
 
         if (nodeLeft != LIST_END && nodeRight != LIST_END) {
-            nodeLeft->next = nodeRight;
+            list *leftTail  = nodeLeft;
+            while (leftTail->next != LIST_END) {
+                leftTail = leftTail->next;
+            }
+
+            leftTail->next = nodeRight;
+            
             return nodeLeft;
         } else if (nodeLeft != LIST_END) {
             return nodeLeft;
@@ -183,7 +189,8 @@ list *getListFromDepth(tree *root, int currentDepth, int requestedDepth) {
 
 void printList(list *head) {
     while (head != LIST_END) {
-        printf("%i%s\n", head->node->data, head->next != LIST_END ? " -> " : "");
+        printf("%i%s", head->node->data, head->next != LIST_END ? " -> " : "\n");
+        head = head->next;
     }
 }
 
@@ -191,8 +198,15 @@ int main(void) {
     // make a binary tree
     tree *binaryTree = createBinaryTree(16);
 
-    printf("List from depth 2:\n");
-    printList(getListFromDepth(binaryTree, 0, 2));
+    int requestedDepth = 0;
+
+    while (requestedDepth != -1) {
+        printf("Please enter depth for printing its nodes or -1 for exit: ");
+        scanf("%i", &requestedDepth);
+   
+        printf("List from depth %i:\n", requestedDepth);
+        printList(getListFromDepth(binaryTree, 1, requestedDepth));
+    }
    
     return 0;
 }
