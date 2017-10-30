@@ -45,18 +45,19 @@ bool isQueueEmpty(queue *q) {
     return q->head == EMPTY_Q_ITEM;
 }
 
-// return the oldest treeNode from the queue
+// return the oldest item from the queue
 tree *dequeueTreeNode(queue *q) {
     if (q->head == EMPTY_Q_ITEM) {
         return EMPTY_LEAF;
     }
 
-    // the queue keeps the oldes item on its head
+    // queue keeps the oldes item on its head
     qItem *item = q->head;
     tree *treeNode = item->treeNode;
     q->head = q->head->next;
-    free(item);
+    free(item); // we don't need that pointer anymore
 
+    // if the queue is empty, cler the tail
     if (q->head == EMPTY_Q_ITEM) {
         q->tail = EMPTY_Q_ITEM;
     }
@@ -64,7 +65,7 @@ tree *dequeueTreeNode(queue *q) {
     return treeNode;
 }
 
-// add new item to the tail of the queue so the oldest item will always be on its head
+// add a new item to the tail of the queue so the oldest item will always be on its head
 void queueAdd(queue *q, tree *treeNode) {
     qItem *item = (qItem *) malloc(sizeof(qItem));
     if (item == NULL) {
@@ -129,7 +130,6 @@ tree *createBinaryTree(int numberOfNodes) {
     return root;
 }
 
-// create a new tree node
 tree *createTreeNode(int nodeId) {
     tree *node = (tree *) malloc(sizeof(tree));
     if (node == NULL) {
@@ -144,7 +144,7 @@ tree *createTreeNode(int nodeId) {
     return node;
 }
 
-// create a linked list for a given depth
+// create a linked list for a given binary tree depth
 list *getListFromDepth(tree *root, int currentDepth, int requestedDepth) {
     if (currentDepth == requestedDepth) {
         list *item = (list *) malloc(sizeof(list));
@@ -165,12 +165,12 @@ list *getListFromDepth(tree *root, int currentDepth, int requestedDepth) {
         list *nodeRight = getListFromDepth(root->right, currentDepth, requestedDepth);
 
         if (nodeLeft != LIST_END && nodeRight != LIST_END) {
-            list *leftTail  = nodeLeft;
-            while (leftTail->next != LIST_END) {
-                leftTail = leftTail->next;
+            list *tail = nodeLeft;
+            while (tail->next != LIST_END) {
+                tail = tail->next;
             }
 
-            leftTail->next = nodeRight;
+            tail->next = nodeRight;
             
             return nodeLeft;
         } else if (nodeLeft != LIST_END) {
@@ -196,7 +196,7 @@ int main(void) {
     int requestedDepth = 0;
 
     while (requestedDepth != -1) {
-        printf("Please enter depth for printing its nodes or -1 for exit: ");
+        printf("Please enter the depth for printing its nodes or -1 for exit: ");
         scanf("%i", &requestedDepth);
    
         printf("List from depth %i:\n", requestedDepth);
