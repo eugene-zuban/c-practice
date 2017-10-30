@@ -11,20 +11,16 @@
 #define EMPTY_LEAF (tree *) 0
 #define EMPTY_Q_ITEM (qItem *) 0
 
-struct list_node {
+typedef struct list_node {
     struct list_node *next;
     struct tree_node *node;
-};
+} list;
 
-struct tree_node {
+typedef struct tree_node {
     int data;
     struct tree_node *left;
     struct tree_node *right;
-};
-
-typedef struct list_node list;
-
-typedef struct tree_node tree;
+} tree;
 
 typedef struct queue_item {
     tree * treeNode;
@@ -39,7 +35,7 @@ typedef struct queue_queue {
 tree *createBinarytree(int numberOfNodes);
 tree *createTreeNode(int nodeId);
 queue *createQueue(void);
-void queueAddTreeNode(queue *q, tree *treeNode);
+void queueAdd(queue *q, tree *treeNode);
 bool isQueueEmpty(queue *q);
 tree *dequeueTreeNode(queue *q);
 list *getListFromDepth(tree *root, int currentDepth, int requestedDepth);
@@ -69,7 +65,7 @@ tree *dequeueTreeNode(queue *q) {
 }
 
 // add new item to the tail of the queue so the oldest item will always be on its head
-void queueAddTreeNode(queue *q, tree *treeNode) {
+void queueAdd(queue *q, tree *treeNode) {
     qItem *item = (qItem *) malloc(sizeof(qItem));
     if (item == NULL) {
         fprintf(stderr, "Memory alloc error\n");
@@ -111,7 +107,7 @@ tree *createBinaryTree(int numberOfNodes) {
     int currentNodeId = 0;
     tree *root = createTreeNode(currentNodeId);
     queue *q = createQueue();
-    queueAddTreeNode(q, root);
+    queueAdd(q, root);
 
     while(! isQueueEmpty(q) && currentNodeId < numberOfNodes) {
         tree *parent = dequeueTreeNode(q);
@@ -126,7 +122,7 @@ tree *createBinaryTree(int numberOfNodes) {
             }
 
             currentChildId--;
-            queueAddTreeNode(q, child);
+            queueAdd(q, child);
         }
     }
 
@@ -197,7 +193,6 @@ void printList(list *head) {
 int main(void) {
     // make a binary tree
     tree *binaryTree = createBinaryTree(16);
-
     int requestedDepth = 0;
 
     while (requestedDepth != -1) {
