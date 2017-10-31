@@ -68,6 +68,10 @@ This repo includes small solutions written on C using different sources for idea
 
 2. [Minimal tree:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/minimal-tree/minimal-tree/main.c) Create a minimal binary search tree from a sorted (INC order) array with unique integers.
 
+3. [List Of Depths:] (https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/list-of-depths/list-of-depths/main.c) Create a linked list of all the nodes at each depth from the given binary tree.
+
+4. [List Of Depth:] (https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/list-of-depth/list-of-depth/main.c) Create a linked list of all the nodes of a specified depth from a given binary tree. Result will have one linked list for a given depth.
+
 **Recursion and Dynamic programming**
 1. [Triple Step:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/triple-step/triple-step/main.c) Count how many possible ways a child can run up a staircase with n steps jumping 1, 2 or 3 steps at a time. Memorization solution.
 
@@ -91,3 +95,6 @@ This repo includes small solutions written on C using different sources for idea
 6. [Missing int:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/missing-int/missing-int/main.c) Given a file with four billion non-negative integers. Write an algorithm to generate a missing integer from the file using only 1GB of memory.
 
 7. [Find Duplicates:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/find-duplicates/find-duplicates/main.c) Find and print all the duplocates in an array from 1..N where N is max 32000 assuming that the N is not known, and only 4K of memory is available.
+
+**Hard tasks**
+1. [Add Without Plus:] (https://github.com/jack-zuban/c-practice/blob/master/hard/add-without-plus/add-without-plus/main.c) Add two numbers without using any arithmetic aperators.
