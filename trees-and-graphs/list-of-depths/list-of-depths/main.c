@@ -172,19 +172,20 @@ void printLists(list **arrayOfLists, int arraySize) {
     }
 }
 
+// main function for forming the lists of depths
 void getLists(list **lists, tree *root, int depth) {
     if (root == EMPTY_TREE_LEAF) {
         return;
     }
 
-    addTreeNodeIntoList(lists, root, depth); // add the current node into its list
+    addTreeNodeIntoList(lists, root, depth); // add the current tree node into its list
     getLists(lists, root->left, depth + 1); // go into the left branch
     getLists(lists, root->right, depth + 1); // go into the right branch
 }
 
-// add the node into the lists[depth]
+// add the node to the lists[depth]
 void addTreeNodeIntoList(list **lists, tree *node, int depth) {
-    if (lists[depth] == EMPTY_LINKED_LIST) { // create a new list if it doesn't exits
+    if (lists[depth] == EMPTY_LINKED_LIST) { // create a new list if it doesn't exit
         lists[depth] = (list *) malloc(sizeof(list));
         if (lists[depth] == NULL) {
             fprintf(stderr, "Memory alloc error\n");
@@ -204,7 +205,7 @@ void addTreeNodeIntoList(list **lists, tree *node, int depth) {
     newItem->node = node;
     newItem->next = EMPTY_LIST_NODE;
 
-    // insert the node into the linked list keeping traking the tail
+    // insert the node into the linked list keeping tracking the tail
     if (lists[depth]->head == EMPTY_LIST_NODE) {
         lists[depth]->head = newItem;
         lists[depth]->tail = newItem;
@@ -217,13 +218,14 @@ void addTreeNodeIntoList(list **lists, tree *node, int depth) {
 int main(void) {
     // make a binary tree
     int maxElementValue = 0;
-    while (maxElementValue <= 0) {
+    while (maxElementValue <= 0 || maxElementValue > 60) {
         printf("Please enter max leaf value for the binary tree in the range [1..60]: ");
         scanf("%i", &maxElementValue);
     }
 
     tree *binaryTree = createBinaryTree(maxElementValue);
 
+    // create an array of linked lists for holding all the linked lists for each level of the binary tree
     int maxDepth = 10;
     list **arrayOfLists = (list **) malloc(maxDepth * sizeof(list *));
     for (int i = 0; i < maxDepth; i++) {
