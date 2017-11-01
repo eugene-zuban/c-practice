@@ -81,6 +81,8 @@ This repo includes small solutions written on C using different sources for idea
 
 4. [Power Set:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/power-set/power-set/main.c) Return all subsets of a set using a binary mask approach for that.
 
+5. [Recursive Multiply:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/recursive-multiply/recursive-multiply/main.c) Multiply two numbers without using * or / operators.
+
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
 
