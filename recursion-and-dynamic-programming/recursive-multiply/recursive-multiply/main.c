@@ -6,32 +6,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int absProduct(int a, int b) {
-    if (a == 0 || b == 0) {
-        return 0;
-    }
+int product(int a, int b);
+int productHelper(int smaller, int bigger);
 
-    if (b == 1) {
-        return a;
-    }
-
-    return a + absProduct(a, b - 1);
+// return negative if the number is positive, and return positive is the number is negative
+int flipSign(int number) {
+    return (~number) + 1;
 }
 
 int product(int a, int b) {
-    int a_abs = a > 0 ? a : (~a) + 1;
-    int b_abs = b > 0 ? b : (~b) + 1;
-    int abs_res = absProduct(a_abs, b_abs);
+    int smaller = a < b ? a : b;
+    int bigger = a < b ? b : a;
 
-    if (a < 0 && b < 0) {
-        return abs_res;
+    // compute product using numbers abolute values
+    int product = productHelper(smaller > 0 ? smaller : flipSign(smaller) , bigger > 0 ? bigger : flipSign(bigger));
+
+    // apply (-) sign to the product
+    if (smaller < 0) {
+        product = flipSign(product);
     }
 
-    if (a < 0 || b < 0) {
-        return (~abs_res) + 1;
+    // change the sign for the product
+    if (bigger < 0) {
+        product = flipSign(product);
     }
 
-    return abs_res;
+    return product;
+}
+
+// computing the product by summing smaller number halfs using recursive calls
+int productHelper(int smaller, int bigger) {
+    if (smaller == 0) {
+        return 0;
+    }
+
+    if (smaller == 1) {
+        return bigger;
+    }
+
+    int half = smaller >> 1; // smaller / 2
+    int halfProduct = productHelper(half, bigger);
+
+    if (smaller % 2 == 0) {
+        return halfProduct + halfProduct;
+    }
+
+    // if smaller is even, need to add one more bigger
+    return halfProduct + halfProduct + bigger;
 }
 
 int main(void) {
