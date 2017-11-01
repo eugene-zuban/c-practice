@@ -8,8 +8,9 @@
 
 int product(int a, int b);
 int productHelper(int smaller, int bigger);
+int flipSign(int number);
 
-// return negative if the number is positive, and return positive is the number is negative
+// return negative if the number is positive, and return positive is the number is negative.
 int flipSign(int number) {
     return (~number) + 1;
 }
@@ -18,15 +19,15 @@ int product(int a, int b) {
     int smaller = a < b ? a : b;
     int bigger = a < b ? b : a;
 
-    // compute product using numbers abolute values
+    // compute the product using numbers absolute values.
     int product = productHelper(smaller > 0 ? smaller : flipSign(smaller) , bigger > 0 ? bigger : flipSign(bigger));
 
-    // apply (-) sign to the product
+    // apply the (-) sign to the product
     if (smaller < 0) {
         product = flipSign(product);
     }
 
-    // change the sign for the product
+    // change the product's sign to the opposite in case if bigger is negative.
     if (bigger < 0) {
         product = flipSign(product);
     }
@@ -34,7 +35,7 @@ int product(int a, int b) {
     return product;
 }
 
-// computing the product by summing smaller number halfs using recursive calls
+// computing the product by summing smaller number halves using recursive calls.
 int productHelper(int smaller, int bigger) {
     if (smaller == 0) {
         return 0;
