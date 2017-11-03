@@ -98,5 +98,7 @@ This repo includes small solutions written on C using different sources for idea
 
 7. [Find Duplicates:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/find-duplicates/find-duplicates/main.c) Find and print all the duplocates in an array from 1..N where N is max 32000 assuming that the N is not known, and only 4K of memory is available.
 
+8. [Sorted Matrix Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-matrix-search/sorted-matrix-search/main.c) Find an element in a given MxN matrix in which each row and column is sorted in ASC order.
+
 **Hard tasks**
 1. [Add Without Plus:](https://github.com/jack-zuban/c-practice/blob/master/hard/add-without-plus/add-without-plus/main.c) Add two numbers without using any arithmetic aperators.
