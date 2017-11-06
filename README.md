@@ -83,6 +83,8 @@ This repo includes small solutions written on C using different sources for idea
 
 5. [Recursive Multiply:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/recursive-multiply/recursive-multiply/main.c) Multiply two numbers without using * or / operators.
 
+6. [Tower Of Hanoi:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/tower-of-hanoi/tower-of-hanoi/main.c) A classic Tower Of Hanoi problem using stack.
+
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
 
