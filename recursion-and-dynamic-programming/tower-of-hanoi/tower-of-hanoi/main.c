@@ -1,6 +1,6 @@
 //
 //  main.c
-//  tower-of-hanoi: a classic Tower Of Hanoi problem using stack.
+//  tower-of-hanoi: a classic Tower Of Hanoi problem using stacks.
 //
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ typedef struct stack {
     struct stackItem *item;
 } stack;
 
-// create a linked list stask helper
+// create a linked list stack helper
 stack *createStack(char *name) {
     stack *newStack = (stack *) malloc(sizeof(stack));   
     if (newStack == NULL) {
@@ -33,7 +33,7 @@ stack *createStack(char *name) {
   return newStack;
 }
 
-// remove the top disk from a given stack
+// remove the top disk from given stack
 int popDisk(stack *st) {
     if (st->item == LIST_END) {
         return -999;
@@ -48,7 +48,7 @@ int popDisk(stack *st) {
     return diskId;
 }
 
-// add a new disk into the stack
+// add a new disk to the stack
 void pushDisk(stack *st, int diskId) {
     stackItem *item = (stackItem *) malloc(sizeof(stackItem));
     if (item == NULL) {
@@ -61,7 +61,7 @@ void pushDisk(stack *st, int diskId) {
     st->item = item;
 }
 
-// print out all disks from a given linked list
+// print out all disks from given linked list
 void printList(stackItem *item) {
     while(item != LIST_END) {
         printf("Disk %i\n", item->diskId); 
@@ -69,7 +69,7 @@ void printList(stackItem *item) {
     }
 }
 
-// moving one disk from origin to destination
+// move one disk from the origin to the destination stack
 void moveTop(stack *origin, stack *dest) {    
     int diskId = popDisk(origin);
     printf("Moving disk %i from %s to %s\n", diskId, origin->name, dest->name);
@@ -79,7 +79,7 @@ void moveTop(stack *origin, stack *dest) {
     }
 }
 
-// move disks recursivelly move all the disks
+// recursively move all the disks using a base case
 void moveDisks(int n, stack *origin, stack *dest, stack *buffer) {
     if (n <= 0) {
         return;
@@ -88,17 +88,16 @@ void moveDisks(int n, stack *origin, stack *dest, stack *buffer) {
     // move from origin into the buffer using *dest as a buffer
     moveDisks(n - 1, origin, buffer, dest);
 
-    // move the top from origin to the dest
+    // move the top from *origin to the *dest
     moveTop(origin, dest);
 
-    // move from the buffer into the dest using *origin as a buffer
+    // move from the buffer into the *dest using *origin as a buffer
     moveDisks(n - 1, buffer, dest, origin);
 }
 
 int main(int argc, const char * argv[]) {
     if (argc < 2)
         return -1;
-
     int disks = atoi(argv[1]);
 
     // create all stacks
