@@ -17,6 +17,7 @@ typedef struct node {
     int leftNodesCount;
 } node;
 
+// form a binary search tree with storing the left branch size for each node.
 node *insert(node *root, int data) {
     if (root == EMPTY_NODE) {
         root = (node *) malloc(sizeof(node));
@@ -33,16 +34,17 @@ node *insert(node *root, int data) {
         return root;
     }
 
-    if (data <= root->data) {
-        root->leftNodesCount++;
+    if (data <= root->data) { // go to the left branch
+        root->leftNodesCount++; // keep track the branch nodes count
         root->left = insert(root->left, data);
-    } else {
+    } else { // go to the right branch
         root->right = insert(root->right, data);
     }
 
     return root;
 }
 
+// using binary search tree for getting a rank using stored left branch size of each node.
 int getRank(node *root, int x) {
     int rank = -1;
 
@@ -54,12 +56,13 @@ int getRank(node *root, int x) {
         return root->leftNodesCount;
     }
 
-    if (x < root->data) {
-        rank = getRank(root->left, x);
-    } else {
+    if (x < root->data) { // go left
+        rank = getRank(root->left, x); // we don't need to add extra nodes count
+    } else { // go right
         rank = getRank(root->right, x);
 
         if (rank != -1) {
+            // when the result comes from the right branch need to include left size + current node
             rank = rank + root->leftNodesCount + 1;
         }
     }
@@ -68,16 +71,16 @@ int getRank(node *root, int x) {
 }
 
 int main(void) {
+    // emulate a stream
     int stream[] = {5, 3, 2, 4, 10, 20, 15, 15};
     int x = 0;
-    node *root = EMPTY_NODE;
+    node *root = EMPTY_NODE; // root of BST
 
-    // make a binary tree and print out the given stream.
+    // make a BST and print out the given stream.
     for (int i = 0; i < sizeof(stream) / sizeof(int); i++) {
         root = insert(root, stream[i]); // store the input stream in a binary tree
         printf("%i ", stream[i]);
     }
-
     printf("\n");
 
     while (true) {
