@@ -102,5 +102,9 @@ This repo includes small solutions written on C using different sources for idea
 
 8. [Sorted Matrix Search:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-matrix-search/sorted-matrix-search/main.c) Find an element in a given MxN matrix in which each row and column is sorted in ASC order.
 
+9. [Rank from Stream:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/rank-from-stream/rank-from-stream/main.c) In a given range of integers (imaginary input stream) find the rank of a number X. Finding the rank of X means to return number of values less than or equal to x (excluding the x itself).
+
+10. [Peaks And Valleys:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/peaks-and-valleys/peaks-and-valleys/main.c) Sort a given array of integers into an alternating sequence of "peaks" and "valleys".
+
 **Hard tasks**
 1. [Add Without Plus:](https://github.com/jack-zuban/c-practice/blob/master/hard/add-without-plus/add-without-plus/main.c) Add two numbers without using any arithmetic aperators.
