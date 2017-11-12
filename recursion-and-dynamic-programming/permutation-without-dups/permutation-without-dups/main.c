@@ -8,16 +8,16 @@
 #include <string.h>
 
 char *substring(char *str, int start, int end) {
-    if (strlen(str) < end) {
-        return (char *) 0;
+    if (strlen(str) < end || end == 0) {
+        end = (int) strlen(str);
     }
 
     int subLength = end - start;
-    if (subLength <= 0) {
-        return (char *) 0;
+    if (subLength < 0) {
+        subLength = 0;
     }
 
-    char *substr = (char *) malloc(sizeof(char) * subLength + 1);
+    char *substr = (char *) malloc(sizeof(char) * (subLength + 1));
     if (substr == NULL) {
         fprintf(stderr, "Memory alloc error\n");
         exit(EXIT_FAILURE);
