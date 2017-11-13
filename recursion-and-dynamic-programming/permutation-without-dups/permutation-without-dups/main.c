@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define EMPTY_ITEM (stackItem *) 0
 #define EMPTY_STACK (stack *) 0
@@ -35,7 +36,7 @@ char *stackPop(stack *st);
 
 // strings related function
 char *substring(char *str, int start, int end);
-char *strcontat(char *str1, char *str2);
+char *strconcat(char *str1, char *str2);
 
 // create a new linked list stack
 stack *createStack() {
@@ -61,6 +62,7 @@ stackItem *createStackItem(char *str) {
     return item;
 }
 
+// push str to the stack
 void stackAdd(stack *st, char *str) {
     stackItem *item = createStackItem(str);
 
@@ -68,12 +70,14 @@ void stackAdd(stack *st, char *str) {
     st->head = item;
 }
 
+// remove the top item from the stack
 char *stackPop(stack *st) {
     if (st->head == EMPTY_ITEM) {
         return (char *) 0;
     }
 
     char *string = st->head->string;
+
     stackItem *item = st->head;
     st->head = item->next;
     free(item);
@@ -83,8 +87,8 @@ char *stackPop(stack *st) {
 
 // return str3 = str1 + str2;
 char *strconcat(char *str1, char *str2) {
-    int str1Len = strlen(str1);
-    int str2Len = strlen(str2);
+    int str1Len = (int) strlen(str1);
+    int str2Len = (int) strlen(str2);
     int resLen = str1Len + str2Len + 1;
 
     char *result = (char *) malloc(sizeof(char) * resLen);
@@ -100,8 +104,9 @@ char *strconcat(char *str1, char *str2) {
     return result;
 }
 
+// return substring from str
 char *substring(char *str, int start, int end) {
-    if (strlen(str) < end || end == 0) {
+    if (strlen(str) < end) {
         end = (int) strlen(str);
     }
 
@@ -122,11 +127,54 @@ char *substring(char *str, int start, int end) {
     return substr;
 }
 
+stack *permutations(char *str) {
+    int length = (int) strlen(str);
+    stack *result = createStack();
+
+    if (length == 0) { // base case
+        stackAdd(result, "");
+        
+        return result;
+    }
+
+    for (int i = 0; i < length; i++) {
+        char *prefix = substring(str, 0, i);
+        char *suffix = substring(str, i + 1, length);
+        char *partial = strconcat(prefix, suffix);
+
+        stack *partialPermutations = permutations(partial);
+
+        while (partialPermutations->head != EMPTY_ITEM) {
+            char *part1 = substring(str, i, i + 1);
+            char *part2 = stackPop(partialPermutations);
+            char *permutation = strconcat(part1, part2);
+
+            stackAdd(result, permutation);   
+            free(part1);
+        }
+
+        free(prefix);
+        free(suffix);
+        free(partial);
+        free(partialPermutations);
+    }
+
+    return result;
+}
+
+void printPermutations(stack *st) {
+    while(st->head != EMPTY_ITEM) {
+        printf("%s\n", stackPop(st));
+    }
+}
+
 int main(int argc, const char * argv[]) {
-    char *str1 = {"abc"};
-    char *str2 = {"def"};
-    stack *st = createStack();
-    int i;
+    if (argc < 2) {
+       return 0;
+    }
+
+    stack *st = permutations((char *) argv[1]);
+    printPermutations(st);
 
     return 0;
 }
