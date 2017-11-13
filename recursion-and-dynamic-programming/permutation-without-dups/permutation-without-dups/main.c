@@ -7,6 +7,34 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct permItem {
+    char *string;
+    struct permItem *next;
+} stack;
+
+stack *permutations(char *str);
+char *substring(char *str, int start, int end);
+char *strcontat(char *str1, char *str2);
+
+// return str3 = str1 + str2;
+char *strconcat(char *str1, char *str2) {
+    int str1Len = strlen(str1);
+    int str2Len = strlen(str2);
+    int resLen = str1Len + str2Len + 1;
+
+    char *result = (char *) malloc(sizeof(char) * resLen);
+    if (result == NULL) {
+        fprintf(stderr, "Memory alloc error\n");
+        exit(EXIT_FAILURE);
+    }
+
+    memcpy(result, str1, str1Len);
+    memcpy(result + str1Len, str2, str2Len);
+    *(result + resLen - 1) = '\0';
+
+    return result;
+}
+
 char *substring(char *str, int start, int end) {
     if (strlen(str) < end || end == 0) {
         end = (int) strlen(str);
