@@ -52,9 +52,8 @@ stack *createStack() {
 // linked list item
 stackItem *createStackItem(char *str) {
     stackItem *item = (stackItem *) malloc(sizeof(stackItem));
-    if (item == NULL) {
+    if (item == NULL)
         memError();
-    }
 
     item->string = str;
     item->next = EMPTY_ITEM;
@@ -77,7 +76,6 @@ char *stackPop(stack *st) {
     }
 
     char *string = st->head->string;
-
     stackItem *item = st->head;
     st->head = item->next;
     free(item);
@@ -144,15 +142,15 @@ stack *permutations(char *str) {
         char *suffix = substring(str, i + 1, length);
         char *partial = strconcat(prefix, suffix);
 
-        stack *partialPermutations = permutations(partial);
+        stack *partialPermutations = permutations(partial); // compute all the partial's permutations
         while (partialPermutations->head != EMPTY_ITEM) {
             char *part1 = substring(str, i, i + 1);
             char *part2 = stackPop(partialPermutations);
-            char *permutation = strconcat(part1, part2);
+            char *permutation = strconcat(part1, part2); // "build" permutation using previously saved in the stack part
+            stackAdd(result, permutation); // save it into the resulting stack
+
             free(part1);
             free(part2);
-
-            stackAdd(result, permutation);
         }
 
         free(prefix);
