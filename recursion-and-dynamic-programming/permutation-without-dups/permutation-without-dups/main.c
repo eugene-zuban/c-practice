@@ -92,10 +92,8 @@ char *strconcat(char *str1, char *str2) {
     int resLen = str1Len + str2Len + 1;
 
     char *result = (char *) malloc(sizeof(char) * resLen);
-    if (result == NULL) {
-        fprintf(stderr, "Memory alloc error\n");
-        exit(EXIT_FAILURE);
-    }
+    if (result == NULL)
+        memError();
 
     memcpy(result, str1, str1Len);
     memcpy(result + str1Len, str2, str2Len);
@@ -116,10 +114,8 @@ char *substring(char *str, int start, int end) {
     }
 
     char *substr = (char *) malloc(sizeof(char) * (subLength + 1));
-    if (substr == NULL) {
-        fprintf(stderr, "Memory alloc error\n");
-        exit(EXIT_FAILURE);
-    }
+    if (substr == NULL)
+        memError();
 
     memcpy(substr, str + start, subLength);
     *(substr + subLength) = '\0';
@@ -127,12 +123,18 @@ char *substring(char *str, int start, int end) {
     return substr;
 }
 
+// compute all the permutations.
+// the algorithm's runtime is n! and because it's recursive we need to take care of releasing unused memory.
 stack *permutations(char *str) {
     int length = (int) strlen(str);
     stack *result = createStack();
 
     if (length == 0) { // base case
-        stackAdd(result, "");
+        char *empty = (char *) malloc(sizeof(char)); // for being able to use free()
+        if (empty == NULL)
+            memError();
+        *empty = '\0';
+        stackAdd(result, empty);
         
         return result;
     }
@@ -143,14 +145,14 @@ stack *permutations(char *str) {
         char *partial = strconcat(prefix, suffix);
 
         stack *partialPermutations = permutations(partial);
-
         while (partialPermutations->head != EMPTY_ITEM) {
             char *part1 = substring(str, i, i + 1);
             char *part2 = stackPop(partialPermutations);
             char *permutation = strconcat(part1, part2);
-
-            stackAdd(result, permutation);   
             free(part1);
+            free(part2);
+
+            stackAdd(result, permutation);
         }
 
         free(prefix);
@@ -163,9 +165,15 @@ stack *permutations(char *str) {
 }
 
 void printPermutations(stack *st) {
-    while(st->head != EMPTY_ITEM) {
-        printf("%s\n", stackPop(st));
+    stackItem *head = st->head;
+    int count = 0;
+    while(head != EMPTY_ITEM) {
+        printf("%s\n", head->string);
+        head = head->next;
+        count++;
     }
+
+    printf("Total number of permutations is: %i\n", count);
 }
 
 int main(int argc, const char * argv[]) {
