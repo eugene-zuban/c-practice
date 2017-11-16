@@ -14,9 +14,8 @@ int32_t insertBits(int32_t original, int32_t bitsToInsert, int fromIndex, int to
         exit(EXIT_FAILURE);
     }
 
-    // prepare a mask for setting bits from j to i into 0 on the original number
     int32_t mask = 0;
-    mask = (1 << fromIndex) - 1; // set bits equals number of bits to insert to 1
+    mask = (1 << fromIndex) - 1; // set bits that equal number of bits to insert to 1
     mask = ~(mask << toIndex);
     
     bitsToInsert = bitsToInsert << toIndex; // move bits into their position before inserting into the original number
