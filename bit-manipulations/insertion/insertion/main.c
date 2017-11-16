@@ -26,12 +26,16 @@ int32_t insertBits(int32_t original, int32_t bitsToInsert, int fromIndex, int to
 }
 
 char *intToBaseString(int32_t number, int base) {
-    char *buffer = (char *) malloc(sizeof(char) * 33);
-    *(buffer + 32) = '\0';
-    int i = 31;
+    char baseDigits[17] = "0123456789abcdef";
+    char *buffer = (char *) calloc(sizeof(char), 33);
+    if (buffer == NULL) {
+        fprintf(stderr, "Memory alloc error\n");
+        exit(EXIT_FAILURE);
+    }
 
+    int i = 31;
     do {
-        *(buffer + i) = "0123456789abcdef"[number % base];
+        *(buffer + i) = baseDigits[number % base];
         number = number / base;
         i--;
     } while (number != 0);
@@ -39,21 +43,22 @@ char *intToBaseString(int32_t number, int base) {
     return buffer + i + 1;
 }
 
-void insertionBitsTester(int32_t original, int32_t bitsToInsert, int j, int i) {
-    char *originalBitString = intToBaseString(original, 2);
-    char *bitsToInsertBitString = intToBaseString(bitsToInsert, 2);
-
-    printf("N: %s, M: %s, j: %d, i: %i\n", originalBitString, bitsToInsertBitString, j, i);
+void insertionBitsTester(int32_t original, int32_t bitsToInsert, int from, int to) {
+    printf("N: %s, M: %s, j: %d, i: %i\n", intToBaseString(original, 2), intToBaseString(bitsToInsert, 2), from, to);
+    
+    printf("N: %s \n", intToBaseString(insertBits(original, bitsToInsert, from, to), 2)); 
 }
 
 int main(int argc, const char * argv[]) {
     int32_t original = 0b100000000;
     int32_t bitsToInsert = 0b1101;
-    int j = 6, i = 2;
+    int from = 6, to = 2;
     
-    insertionBitsTester(original, bitsToInsert, j, i);
-    char *insertedBitsString = intToBaseString(insertBits(original, bitsToInsert, j, i), 2);
-    printf("Inserted bits: %s\n", insertedBitsString);
+    printf("Case 1\n");
+    insertionBitsTester(original, bitsToInsert, from, to);
+
+    printf("\nCase 2\n");
+    insertionBitsTester((int32_t) 0b1100000011, (int32_t) 0b111, 6, 3);
 
     return 0;
 }
