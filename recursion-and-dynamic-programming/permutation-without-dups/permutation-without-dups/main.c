@@ -1,6 +1,6 @@
 //
 //  main.c
-//  permutation-without-dups: compute all permutainos of a string if unique characters.
+//  permutation-without-dups: Compute all the permutations of a given string with unique characters.
 //
 
 #include <stdio.h>
