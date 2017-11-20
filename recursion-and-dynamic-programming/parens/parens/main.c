@@ -17,6 +17,13 @@ typedef struct linked_list {
 } list;
 
 int main(int argc, const char * argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "No arguments provided\n");
+        exit(EXIT_FAILURE);
+    }
+
+    int count = atoi(argv[1]);
 
     return 0;
 }
+
