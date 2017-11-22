@@ -90,7 +90,9 @@ This repo includes small solutions written on C using different sources for idea
 
 7. [Permutation without dups:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/permutation-without-dups/permutation-without-dups/main.c) Compute all the permutations of a given string with unique characters.
 
-8. [Parens:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/parens/parens/main.c) Print all valid combinations of n pairs of parentheses.
+8. [Parens:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/parens/parens/main.c) Print all valid combinations of n pairs of parentheses. Fill all the surrounding area until the color changes the original color. "Paint fill" function analogy.
+
+9. [Paint fill:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/paint-fill/paint-fill/main.c) Given an MxN array represents a screen with pixels of different colors, a point, and a color.
 
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
