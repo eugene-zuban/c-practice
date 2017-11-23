@@ -84,14 +84,10 @@ void addParen(list *parens, int leftRem, int rightRem, char *str, int offset) {
 
     if (leftRem == 0 && rightRem == 0) {
         listAdd(parens, cloneString(str));
-    }
-
-    if (leftRem > 0) {
+    } else {
         str[offset] = '(';
         addParen(parens, leftRem - 1, rightRem, str, offset + 1);
-    }
 
-    if (rightRem > leftRem) {
         str[offset] = ')';
         addParen(parens, leftRem, rightRem - 1, str, offset + 1);
     }
