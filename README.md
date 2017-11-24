@@ -94,6 +94,8 @@ This repo includes small solutions written on C using different sources for idea
 
 9. [Paint fill:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/paint-fill/paint-fill/main.c) Given an MxN array represents a screen with pixels of different colors, a point, and a color.
 
+10. [Coins:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/coins/coins/main.c) Given infinite number of coins 25, 10, 5, and 1 cents. Compute the number of ways representing n cents.
+
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
 
