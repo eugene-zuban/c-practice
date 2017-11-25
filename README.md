@@ -72,6 +72,8 @@ This repo includes small solutions written on C using different sources for idea
 
 4. [List Of Depth:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/list-of-depth/list-of-depth/main.c) Create a linked list of all the nodes of a specified depth from a given binary tree. Result will have one linked list for a given depth.
 
+5. [Check Balanced:](https://github.com/jack-zuban/c-practice/blob/master/trees-and-graphs/check-balanced/check-balanced/main.c) Check if a binary tree is is balanced. A balanced tree is defined to be a tree such that the heights of the two subtrees of any node never differ by more than one.
+
 **Bit Manipulations**
 1. [Insertion:](https://github.com/jack-zuban/c-practice/blob/master/bit-manipulations/insertion/insertion/main.c) Insert bits from 32-bit number M into 32-bit number N into position starts from bit j and ends on bit i. Example: N = 100000, M = 000111, j = 3, i = 1, result = 101110
 
