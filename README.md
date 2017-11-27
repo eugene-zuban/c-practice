@@ -100,6 +100,8 @@ This repo includes small solutions written on C using different sources for idea
 
 10. [Coins:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/coins/coins/main.c) Given infinite number of coins 25, 10, 5, and 1 cents. Compute the number of ways representing n cents.
 
+11. [Eight Queens:](https://github.com/jack-zuban/c-practice/blob/master/recursion-and-dynamic-programming/eight-queens/eight-queens/main.c) Print all the ways of arrangings 8 queens on an 8x8 chessboard that none of the queens shares the same row, column, or diagonal.
+
 **Sorting and searching**
 1. [Sorted Merge:](https://github.com/jack-zuban/c-practice/blob/master/sorting-and-searching/sorted-merge/sorted-merge/main.c) Given two sorted arrays A and B, where A has enough space at the end to hold B. Merge B into A in sorted order.
 
