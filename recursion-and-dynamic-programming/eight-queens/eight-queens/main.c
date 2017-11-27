@@ -1,6 +1,6 @@
 //
 //  main.c
-//  eight-queens: print all the ways of arrangings 8 queens on an 8x8 chess board.
+//  eight-queens: print all the ways of arrangings 8 queens on an 8x8 chessboard.
 //  That none of the queens shares the same row, column, or diagonal.
 //
 //
@@ -18,7 +18,7 @@ typedef struct way_node {
     struct way_node *next;
 } way;
 
-// a linked list wrapper for holding all the ways of queens arrangings
+// a linked list wrapper for holding all the ways of queens arrangements
 typedef struct ways_list {
     way *head;
     way *tail;
@@ -56,7 +56,7 @@ void copyColumnsToList(ways *list, int *columns) {
     list->tail = newWay;
 }
 
-// Checking is the requested position is "safe" for putting the queen in
+// Checking if the requested position is "safe" for putting the queen in
 bool isQueenAllowed(int rowToPut, int colToPut, int *columns) {
     for (int rowBefore = 0; rowBefore < rowToPut; rowBefore++) {
         int colBefore = columns[rowBefore];
@@ -66,7 +66,7 @@ bool isQueenAllowed(int rowToPut, int colToPut, int *columns) {
             return false;
         }
 
-        /* Check a diaginal */
+        /* Check a diagonal */
         int colsDiff = abs(colToPut - colBefore);
         int rowsDiff = rowToPut - rowBefore;
 
