@@ -56,6 +56,42 @@ void copyColumnsToList(ways *list, int *columns) {
     list->tail = newWay;
 }
 
+// Checking is the requested position is "safe" for putting the queen in
+bool isQueenAllowed(int rowToPut, int colToPut, int *columns) {
+    for (int rowBefore = 0; rowBefore < rowToPut; rowBefore++) {
+        int colBefore = columns[rowBefore];
+
+        /* check that the column is free to put a queen in */
+        if (colBefore == colToPut) {
+            return false;
+        }
+
+        /* Check a diaginal */
+        int colsDiff = abs(colToPut - colBefore);
+        int rowsDiff = rowToPut - rowBefore;
+
+        if (colsDiff == rowsDiff) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// recursively fill the grid with all possible combinations
+void putQueen(int *columns, int row, ways *listOfWays) {
+    if (row == GRID_SIZE) { // add the current combination to the list of ways/combinations
+        copyColumnsToList(listOfWays, columns);
+    } else {
+        for (int col = 0; col < GRID_SIZE; col++) {
+            if (isQueenAllowed(row, col, columns)) {
+                columns[row] = col;
+                putQueen(columns, row + 1, listOfWays);
+            }
+        }
+    }
+}
+
 int main(int argc, const char * argv[]) {
     return 0;
 }
