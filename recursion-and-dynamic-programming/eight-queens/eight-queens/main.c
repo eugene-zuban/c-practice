@@ -92,6 +92,35 @@ void putQueen(int *columns, int row, ways *listOfWays) {
     }
 }
 
+void printWays(ways *list) {
+    way *head = list->head;
+    while (head != EMPTY_WAY) {
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                printf(" %c ", head->columns[row] == col ? 'Q' : '-');
+            }
+
+            printf("\n");
+        }
+
+        printf("\n");
+        head = head->next;
+    }
+}
+
 int main(int argc, const char * argv[]) {
+    int *columns = (int *) calloc(sizeof(int), GRID_SIZE);
+    ways *listOfWays = (ways *) calloc(sizeof(ways), 1);
+
+    if (columns == NULL || listOfWays == NULL) {
+        exit(EXIT_FAILURE);
+    }
+
+    listOfWays->head = EMPTY_WAY;
+    listOfWays->tail = EMPTY_WAY;
+
+    putQueen(columns, 0, listOfWays);
+    printWays(listOfWays);
+
     return 0;
 }
