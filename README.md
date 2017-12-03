@@ -125,3 +125,6 @@ This repo includes small solutions written on C using different sources for idea
 
 **Hard tasks**
 1. [Add Without Plus:](https://github.com/jack-zuban/c-practice/blob/master/hard/add-without-plus/add-without-plus/main.c) Add two numbers without using any arithmetic aperators.
+
+### Algorithms ###
+1. [Find a 1d peak:](https://github.com/jack-zuban/c-practice/blob/master/algorithms/peak-finder-1d.c) Find a peak in 1D array `a[]`, where `a[i]` is a peak if `a[i-1] <= a[i] <= a[i+1]`
