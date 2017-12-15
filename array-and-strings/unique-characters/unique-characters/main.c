@@ -7,25 +7,29 @@
 //
 
 #include <stdio.h>
+#include <stdbool.h>
 
-_Bool isUniqueChars(char *str) {
+bool isUniqueChars(char *str) {
+    // create an array for counting chars frequency, and set all the elements in the array to 0
     int frequencyDictionary[127] = {};
 
+    // go through all the characters in the string, counting their frequency
     while(*str) {
         frequencyDictionary[(int) *str]++;
-
+        
+        // if more than 1, means that the current character is not unique.
         if (frequencyDictionary[(int) *str] > 1) {
-            return 0;
+            return false;
         }
 
         str++;
     }
 
-    return 1;
+    return true;
 }
 
 int main(void) {
-    _Bool isUniqueChars(char *string);
+    bool isUniqueChars(char *string);
     char inputString[127] = {};
 
     printf("Please enter your string: ");
