@@ -15,8 +15,8 @@ typedef struct {
 } boxStack;
 
 int comparator(const void * a, const void * b) {
-    int left = ((box *) a)->height;
-    int right = ((box *) b)->height;
+    int left = (* (box **) a)->height;
+    int right = (* (box **) b)->height;
     int res = left - right;
 
     return res;
@@ -74,7 +74,7 @@ int main(void) {
     printf("Please enter stack size: ");
     scanf("%i", &stackSize);
     boxStack *stack = createBoxStack(stackSize);
-    qsort((void *) *stack->storage, stackSize, sizeof(box), comparator);
+    qsort((box **) stack->storage, stackSize, sizeof(box *), comparator);
 
     printBoxesFromStack(stack);
 
