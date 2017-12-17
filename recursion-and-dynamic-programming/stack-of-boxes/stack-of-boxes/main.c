@@ -1,6 +1,7 @@
 //
-//  main.c
-//  stack-of-boxes
+//  stack-of-boxes: Given a stack of n boxes with widths, heights, and depths.
+//  return the height of the tallest possible stack of boxes
+//  where each next box's dimension (width, height, and depth) is smaller than the current.
 //
 
 #include <stdio.h>
