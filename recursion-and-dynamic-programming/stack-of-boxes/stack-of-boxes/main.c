@@ -9,7 +9,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define NULL_BOX (box *) 0
+
 typedef struct {
+
     int height;
     int width;
     int length;
@@ -72,6 +75,17 @@ boxStack *createBoxStack(int stackSize) {
     }
 
     return stack;
+}
+
+int createStack(box **boxes, int size, box *bottom, int offset, int *stasckMap) {
+    if (offset >= size) {
+        return 0;
+    }
+
+    int heightWithBottom = 0;
+    box *newBottom = boxes[offset];
+    
+    return 1;
 }
 
 int main(void) {
