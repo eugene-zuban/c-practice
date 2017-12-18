@@ -77,13 +77,16 @@ boxStack *createBoxStack(int stackSize) {
     return stack;
 }
 
-int createStack(box **boxes, int size, box *bottom, int offset, int *stasckMap) {
+int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     if (offset >= size) {
         return 0;
     }
 
     int heightWithBottom = 0;
     box *newBottom = boxes[offset];
+    if (stackMap[offset] == 0) {
+        // do things
+    }
     
     return 1;
 }
