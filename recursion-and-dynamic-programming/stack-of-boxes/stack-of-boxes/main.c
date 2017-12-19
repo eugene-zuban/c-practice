@@ -104,14 +104,23 @@ int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     return (heightWithBottom > heightWithoutBottom) ? heightWithBottom : heightWithoutBottom;
 }
 
+int getMaxStackHeight(boxStack *stack, int stackSize) {
+    qsort((box **) stack->storage, stackSize, sizeof(box *), comparator);
+    printBoxesFromStack(stack);
+    int stackMap[stackSize];
+    for (int i = 0; i < stackSize; i++) {
+        stackMap[i] = 0;
+    }
+
+    return createStack(stack->storage, stackSize, NULL_BOX, 0, stackMap);
+}
+
 int main(void) {
     int stackSize = 0;
     printf("Please enter stack size: ");
     scanf("%i", &stackSize);
     boxStack *stack = createBoxStack(stackSize);
-    qsort((box **) stack->storage, stackSize, sizeof(box *), comparator);
-
-    printBoxesFromStack(stack);
+    printf("Max stack height: %i", getMaxStackHeight(stack, stackSize));
 
     return 0;
 }
