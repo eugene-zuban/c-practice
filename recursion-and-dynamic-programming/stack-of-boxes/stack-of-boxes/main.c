@@ -85,10 +85,16 @@ int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     int heightWithBottom = 0;
     box *newBottom = boxes[offset];
     if (stackMap[offset] == 0) {
-        // do things
+        if  (bottom == NULL_BOX || canBeBottom(bottom, newBottom)) {
+            stackMap[offset] = createStack(boxes, size, newBottom, offset + 1, stackMap);
+            stackMap[offset] += bottom->height;
+        }
     }
     
-    return 1;
+    heightWithBottom = stackMap[offset];
+    int heightWithoutBottom = createStack(boxes, size, newBottom, offset + 1, stasckMap);
+
+    return max(heightWithBottom, heightWithoutBottom);
 }
 
 int main(void) {
