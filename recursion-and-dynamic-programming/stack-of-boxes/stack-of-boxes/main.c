@@ -12,7 +12,6 @@
 #define NULL_BOX (box *) 0
 
 typedef struct {
-
     int height;
     int width;
     int length;
@@ -77,6 +76,14 @@ boxStack *createBoxStack(int stackSize) {
     return stack;
 }
 
+bool canBeBottom(box *top, box *bottom) {
+    bool isHeightOk = bottom->height > top->height;
+    bool isWidthOk = bottom->width > top->width;
+    bool isLengthOk = bottom->length > top->length;
+
+    return isHeightOk && isWidthOk && isLengthOk;
+}
+
 int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     if (offset >= size) {
         return 0;
@@ -92,9 +99,9 @@ int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     }
     
     heightWithBottom = stackMap[offset];
-    int heightWithoutBottom = createStack(boxes, size, newBottom, offset + 1, stasckMap);
+    int heightWithoutBottom = createStack(boxes, size, newBottom, offset + 1, stackMap);
 
-    return max(heightWithBottom, heightWithoutBottom);
+    return (heightWithBottom > heightWithoutBottom) ? heightWithBottom : heightWithoutBottom;
 }
 
 int main(void) {
