@@ -65,9 +65,10 @@ boxStack *createBoxStack(int stackSize) {
             exitOnMemoryError();
         }
 
-        newBox->height = (int) rand() % 100;
-        newBox->width = (int) rand() % 100;
-        newBox->length = (int) rand() % 100;
+        int base = rand() % 100;
+        newBox->height = base;
+        newBox->width = base;
+        newBox->length = base;
 
         stack->storage[i] = newBox;
         stack->size++;
@@ -96,7 +97,7 @@ int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     if (stackMap[offset] == 0) {
         if  (bottom == NULL_BOX || canBeBottom(bottom, newBottom)) {
             stackMap[offset] = createStack(boxes, size, newBottom, offset + 1, stackMap);
-            stackMap[offset] += bottom->height;
+            stackMap[offset] += newBottom->height;
         }
     }
     
@@ -112,7 +113,11 @@ int getMaxStackHeight(boxStack *stack, int stackSize) {
     printBoxesFromStack(stack);
     
     // initialize stackMap "hash" table
-    int stackMap[stackSize];
+    int *stackMap = (int *) malloc(sizeof(int) * stackSize);
+    if (stackMap == NULL) {
+        exitOnMemoryError();
+    }
+
     for (int i = 0; i < stackSize; i++) {
         stackMap[i] = 0;
     }
@@ -126,7 +131,7 @@ int main(void) {
     printf("Please enter stack size: ");
     scanf("%i", &stackSize);
     boxStack *stack = createBoxStack(stackSize);
-    printf("Max stack height: %i", getMaxStackHeight(stack, stackSize));
+    printf("Max stack height: %i\n", getMaxStackHeight(stack, stackSize));
 
     return 0;
 }
