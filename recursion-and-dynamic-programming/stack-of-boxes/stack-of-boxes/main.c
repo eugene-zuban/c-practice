@@ -65,9 +65,9 @@ boxStack *createBoxStack(int stackSize) {
             exitOnMemoryError();
         }
 
-        newBox->height = (int) rand % 100;
-        newBox->width = (int) rand % 100;
-        newBox->length = (int) rand % 100;
+        newBox->height = (int) rand() % 100;
+        newBox->width = (int) rand() % 100;
+        newBox->length = (int) rand() % 100;
 
         stack->storage[i] = newBox;
         stack->size++;
