@@ -85,11 +85,13 @@ bool canBeBottom(box *top, box *bottom) {
 }
 
 int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
-    if (offset >= size) {
+    if (offset >= size) { // base case
         return 0;
     }
 
     int heightWithBottom = 0;
+    int heightWithoutBottom = 0;
+
     box *newBottom = boxes[offset];
     if (stackMap[offset] == 0) {
         if  (bottom == NULL_BOX || canBeBottom(bottom, newBottom)) {
@@ -99,19 +101,23 @@ int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     }
     
     heightWithBottom = stackMap[offset];
-    int heightWithoutBottom = createStack(boxes, size, newBottom, offset + 1, stackMap);
+    heightWithoutBottom = createStack(boxes, size, newBottom, offset + 1, stackMap);
 
     return (heightWithBottom > heightWithoutBottom) ? heightWithBottom : heightWithoutBottom;
 }
 
 int getMaxStackHeight(boxStack *stack, int stackSize) {
+    // sort boxes in desc order using a custom comparator function
     qsort((box **) stack->storage, stackSize, sizeof(box *), comparator);
     printBoxesFromStack(stack);
+    
+    // initialize stackMap "hash" table
     int stackMap[stackSize];
     for (int i = 0; i < stackSize; i++) {
         stackMap[i] = 0;
     }
 
+    // call createStack() for getting the max stack height
     return createStack(stack->storage, stackSize, NULL_BOX, 0, stackMap);
 }
 
