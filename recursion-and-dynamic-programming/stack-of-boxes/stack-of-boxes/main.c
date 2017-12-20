@@ -65,10 +65,9 @@ boxStack *createBoxStack(int stackSize) {
             exitOnMemoryError();
         }
 
-        int base = rand() % 100;
-        newBox->height = base;
-        newBox->width = base;
-        newBox->length = base;
+        newBox->height = (int) rand % 100;
+        newBox->width = (int) rand % 100;
+        newBox->length = (int) rand % 100;
 
         stack->storage[i] = newBox;
         stack->size++;
@@ -77,7 +76,7 @@ boxStack *createBoxStack(int stackSize) {
     return stack;
 }
 
-bool canBeBottom(box *top, box *bottom) {
+bool canBeBottom(box *bottom, box *top) {
     bool isHeightOk = bottom->height > top->height;
     bool isWidthOk = bottom->width > top->width;
     bool isLengthOk = bottom->length > top->length;
