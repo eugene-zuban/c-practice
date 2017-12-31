@@ -8,24 +8,14 @@
 //
 
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
-
-bool isLengthEqual(char *str1, char *str2)
-{
-    while (*str1 && *str2) {
-        str1++;
-        str2++;
-    }
-
-    return (*str1 == '\0' && *str2 == '\0');
-}
 
 bool isPermutation(char *str1, char *str2)
 {
-    bool isLengthEqual(char *str1, char *str2);
     int charactersFrequency[128] = {}; // to be able to work with 128 ASCII alphabet
 
-    if (! isLengthEqual(str1, str2)) { // permuted string needs to have the same length
+    if (strlen(str1) != strlen(str2)) { // permuted string needs to have the same length
         return false;
     }
 
