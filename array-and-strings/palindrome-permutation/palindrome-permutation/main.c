@@ -1,15 +1,14 @@
 //
 //  main.c
 //  palindrome-permutation
-//  Check if a given string is a permutation of a palindrome by toggling the bits that represent characters in the string.
-//
+//  Check if a given string is a permutation of a palindrome by toggling bits that represents characters in the string.
 //
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
 
-// false for a non-ASCII English letter.
+// false for non-ASCII English letter.
 bool isEnglishLetter(char character)
 {
     return ((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z'));
@@ -44,9 +43,9 @@ int createBitVector(char *phrase)
     return bitVector;
 }
 
-// a palindrome needs to have an even number of similar characters or only one character without a pair.
-// we form an integer bit vector where each bit is a character's number ('a' sets a bit 97)
-// and we toggle a character's bit whenever we see the character in the string.
+// a palindrome needs to have even number of similar characters or only one character without a pair.
+// we form thes integer bit vector where each bit is character's number ('a' sets a bit 97)
+// and we toggle the character's bit whenever we see this character in the string.
 bool isPermutationOfPalindrome(char *phrase)
 {
     bool chackThatOnlyOneBitIsSet(int);
