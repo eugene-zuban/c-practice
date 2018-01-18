@@ -1,6 +1,6 @@
 //
-//  stack-of-boxes: Given a stack of n boxes with widths, heights, and depths.
-//  return the height of the tallest possible stack of boxes
+//  stack-of-boxes: Given a stack of N boxes with widths, heights, and depths.
+//  Return the height of the tallest possible stack of boxes
 //  where each next box's dimension (width, height, and depth) is smaller than the current.
 //
 
@@ -22,6 +22,7 @@ typedef struct {
     int size;
 } boxStack;
 
+// compare box structures by their height
 int comparator(const void * a, const void * b) {
     int left = (* (box **) a)->height;
     int right = (* (box **) b)->height;
