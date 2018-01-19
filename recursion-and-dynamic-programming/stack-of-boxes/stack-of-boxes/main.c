@@ -47,6 +47,7 @@ void exitOnMemoryError(void) {
     exit(EXIT_FAILURE);
 }
 
+// creating a stack of boxes of the given size
 boxStack *createBoxStack(int stackSize) {
     boxStack *stack = (boxStack *) malloc(sizeof(boxStack));
     if (stack == NULL) {
@@ -77,6 +78,7 @@ boxStack *createBoxStack(int stackSize) {
     return stack;
 }
 
+// check if the given *bottom box can be placed under the *top box
 bool canBeBottom(box *bottom, box *top) {
     bool isHeightOk = bottom->height > top->height;
     bool isWidthOk = bottom->width > top->width;
