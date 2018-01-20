@@ -87,6 +87,7 @@ bool canBeBottom(box *bottom, box *top) {
     return isHeightOk && isWidthOk && isLengthOk;
 }
 
+// recursive algorithm for searching the max stack height
 int createStack(box **boxes, int size, box *bottom, int offset, int *stackMap) {
     if (offset >= size) { // base case
         return 0;
