@@ -1,9 +1,7 @@
 //
 //  main.c
-//  URLfy: replace spaces with '%20' processing given string from the end.
-//
-//  Created by Jack Zuban on 8/21/17.
-//  Copyright © 2017 Jack Zuban. All rights reserved.
+//  URLfy: replace all the spaces in a given string with '%20'.
+//  Assuming the string has enough space to handle all the additional characters.
 //
 
 #include <stdio.h>
@@ -17,6 +15,7 @@ void readLine(char *buffer)
     *(--buffer) = '\0';
 }
 
+// Replace all the spaces starting from the end of the string
 void replaceSpaces(char *origStrPt)
 {
     int numberOfSpaces = 0;
@@ -31,7 +30,7 @@ void replaceSpaces(char *origStrPt)
         }
     }
 
-    // set pointer for new string to the end
+    // set pointer of the new string to the end
     newStrPt = (--origStrPt) + numberOfSpaces * 2;
 
     // copy values from the end using original and new strings pointers diff as a buffer for inserint extra characters
