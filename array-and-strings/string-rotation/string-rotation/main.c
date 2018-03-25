@@ -1,9 +1,8 @@
 //
 //  main.c
-//  string-rotation: check if string s1 is a rotation of s2.
+//  string-rotation: check if one string is a rotation of another.
 //
 //
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -18,20 +17,18 @@ bool isRotation(char *s1, char *s2) {
     return isSubstring(s2, s1);
 }
 
-bool isSubstring(char *s1, char *s2) {
-    return strstr(s1, s2) ? true : false;
+bool isSubstring(char *haystack, char *needle) {
+    return strstr(haystack, needle) ? true : false;
 }
 
-// add s2 to the end of s1
-void appendString(char *s1, char *s2) {
-    int s1length = (int) strlen(s1);
+void appendString(char *appendTo, char *appendFrom) {
+    int offset = (int) strlen(appendTo);
     int i = 0;
-
-    while (i++ < s1length && *s2) {
-        *(s1++ + s1length) = *s2++;
+    while (i++ < offset && *appendFrom) {
+        *(appendTo++ + offset) = *appendFrom++;
     }
 
-    *(s1 + s1length) = '\0';
+    *(appendTo + offset) = '\0';
 }
 
 int main(void) {
