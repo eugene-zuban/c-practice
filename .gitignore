@@ -4,3 +4,7 @@
 *.swp
 *.xcodeproj*
 .DS_Store
+.idea/
+CMakeLists.txt
+cmake-build-debug
+
