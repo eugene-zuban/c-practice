@@ -29,23 +29,23 @@ node *createNode(int32_t value) {
     return newNode;
 }
 
-bool isBST(node *root, int32_t min, int32_t max) {
+bool isBinarySearchTree(node *root, int32_t min, int32_t max) {
     if (root == EMPTY_NODE) {
         return true;
     }
 
-    if (min >= root->value || root->value > max) {
+    if (root->value <= min || root->value > max) {
         return false;
     }
 
-    bool isLeftBst = isBST(root->left, min, root->value);
-    bool isRightBst = isBST(root->right, root->value, max);
+    bool isLeftBst = isBinarySearchTree(root->left, min, root->value);
+    bool isRightBst = isBinarySearchTree(root->right, root->value, max);
 
     return isLeftBst && isRightBst;
 }
 
 int main(int argc, const char * argv[]) {
-    // create a tree
+    // create a BST tree
     node *aTree = createNode(20);
     aTree->left = createNode(10);
     aTree->right = createNode(30);
@@ -53,12 +53,12 @@ int main(int argc, const char * argv[]) {
     aTree->right->right = createNode(40);
     aTree->left->left = createNode(5);
     aTree->left->right = createNode(15);
-    printf("aTree is a BST: %s\n", isBST(aTree, INT32_MIN, INT32_MAX) ? "true" : "false");
+    printf("aTree is a BST: %s\n", isBinarySearchTree(aTree, INT32_MIN, INT32_MAX) ? "true" : "false");
 
-    // create a non BST tree (by making aTree a non BST)
+    // create a non BST tree by adding an "incorrect" value into its leaf.
     node *bTree = aTree;
-    bTree->left->right->value = 4;
-    printf("bTree is a BST: %s\n", isBST(bTree, INT32_MIN, INT32_MAX) ? "true" : "false");
+    bTree->left->right->value = 4; // violate the BST definition
+    printf("bTree is a BST: %s\n", isBinarySearchTree(bTree, INT32_MIN, INT32_MAX) ? "true" : "false");
 
     return 0;
 }
