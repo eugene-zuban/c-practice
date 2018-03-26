@@ -29,14 +29,14 @@ node *createNode(node *parent, int32_t key) {
     return newNode;
 }
 
-void doInOrderTraverse(node *nd, void (*operation) (node *)) {
+void doInOrderTraversal(node *nd, void (*operation) (node *)) {
     if (nd == NULL_NODE) {
         return;
     }
 
-    doInOrderTraverse(nd->left, operation);
+    doInOrderTraversal(nd->left, operation);
     operation(nd);
-    doInOrderTraverse(nd->right, operation);
+    doInOrderTraversal(nd->right, operation);
 }
 
 void printNode(node *nd) {
@@ -53,8 +53,8 @@ int main(int argc, const char * argv[]) {
     root->right = createNode(root, 50);
     root->left->left = createNode(root->left, 20);
 
-    doInOrderTraverse(root, printNode);
-    doInOrderTraverse(root, clearMemory);
+    doInOrderTraversal(root, printNode);
+    doInOrderTraversal(root, clearMemory);
 
     printf("\n");
 
