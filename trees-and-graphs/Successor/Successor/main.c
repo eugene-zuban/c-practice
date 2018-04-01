@@ -15,6 +15,38 @@ typedef struct node {
     struct node *right;
 } node;
 
+node *searchSuccessorInTheLeftNodes(node *nd) {
+    while (nd->left != NULL_NODE) {
+        nd = nd->left;
+    }
+
+    return nd;
+}
+
+node *searchSuccessorInTheParents(node *nd) {
+    while (nd->parent != NULL_NODE) {
+        if (nd->parent->left == nd) {
+            return nd->parent;
+        }
+
+        nd = nd->parent;
+    }
+
+    // if we are here, there is no successor because the given node is the last node on the tree.
+    return NULL_NODE;
+}
+
+node *getSuccessor(node *nd) {
+    // if node has right subtree node, search successor there
+    if (nd->right != NULL_NODE) {
+        return searchSuccessorInTheLeftNodes(nd->right);
+    }
+
+    // if the right node has no subtree, search successor in parents
+    return searchSuccessorInTheParents(nd->parent);
+}
+
+
 node *createNode(node *parent, int32_t key) {
     node *newNode = (node *) malloc(sizeof(node));
     if (newNode == NULL) {
@@ -40,6 +72,11 @@ void doInOrderTraversal(node *nd, void (*operation) (node *)) {
 }
 
 void printNode(node *nd) {
+    if (nd == NULL_NODE) {
+        printf("NULL_NODE");
+        return;
+    }
+
     printf("%i ", nd->key);
 }
 
@@ -47,38 +84,58 @@ void clearMemory(node *nd) {
     free(nd);
 }
 
-node *getSuccessor(node *nd) {
-    if (nd->right != NULL_NODE) {
-        nd = nd->right;
+node *buildTestBst() {
+    node *root = createNode(NULL_NODE, 20);
+    root->left = createNode(root, 10);
+    root->right = createNode(root, 40);
 
-        while (nd->left != NULL_NODE) {
-            nd = nd->left;
-        }
+    root->left->left = createNode(root->left, 7);
+    root->left->right = createNode(root->left, 15);
+    root->right->left = createNode(root->right, 30);
+    root->right->right = createNode(root->right, 50);
 
-        return nd;
-    }
+    root->left->left->left = createNode(root->left->left, 2);
+    root->left->left->right = createNode(root->left->left, 9);
+    root->left->right->left = createNode(root->left->right, 12);
+    root->left->right->right = createNode(root->left->right, 18);
 
-    while (nd->parent != NULL_NODE) {
-        if (nd->parent->left == nd) {
-            return nd;
-        }
+    root->right->left->left = createNode(root->right->left, 29);
+    root->right->left->right = createNode(root->right->left, 32);
+    root->right->right->left = createNode(root->right->right, 42);
+    root->right->right->right = createNode(root->right->right, 57);
 
-        nd = nd->parent;
-    }
-
-    return nd;
+    return root;
 }
 
 int main(int argc, const char * argv[]) {
-    node *root = createNode(NULL_NODE, 40);
-    root->left = createNode(root, 30);
-    root->right = createNode(root, 50);
-    root->left->left = createNode(root->left, 20);
-
+    // build a test BST tree and test the algorithm
+    node *root = buildTestBst();
+    printf("Printing a given tree: ");
     doInOrderTraversal(root, printNode);
-    doInOrderTraversal(root, clearMemory);
-
     printf("\n");
+
+    printf("Successor of 10 is ");
+    printNode(getSuccessor(root->left));
+    printf("\n");
+
+    printf("Successor of 2 is ");
+    printNode(getSuccessor(root->left->left->left));
+    printf("\n");
+
+    printf("Successor of 18 is ");
+    printNode(getSuccessor(root->left->right->right));
+    printf("\n");
+
+    printf("Successor of 50 is ");
+    printNode(getSuccessor(root->right->right));
+    printf("\n");
+
+    printf("Successor of 57 is ");
+    printNode(getSuccessor(root->right->right->right));
+    printf("\n");
+
+    // clear the tree
+    doInOrderTraversal(root, clearMemory);
 
     return 0;
 }
