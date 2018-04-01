@@ -47,6 +47,28 @@ void clearMemory(node *nd) {
     free(nd);
 }
 
+node *getSuccessor(node *nd) {
+    if (nd->right != NULL_NODE) {
+        nd = nd->right;
+
+        while (nd->left != NULL_NODE) {
+            nd = nd->left;
+        }
+
+        return nd;
+    }
+
+    while (nd->parent != NULL_NODE) {
+        if (nd->parent->left == nd) {
+            return nd;
+        }
+
+        nd = nd->parent;
+    }
+
+    return nd;
+}
+
 int main(int argc, const char * argv[]) {
     node *root = createNode(NULL_NODE, 40);
     root->left = createNode(root, 30);
