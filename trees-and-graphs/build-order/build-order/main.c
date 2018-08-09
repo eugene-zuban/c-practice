@@ -26,5 +26,20 @@ project **projectsToBuild;
 char **projectDependencies;
 
 int main(int argc, const char * argv[]) {
+    int numberOfProjects = 0;
+    int numberOfDependencies = 0;
+
+    // enter projects
+    while (numberOfProjects <= 0 || numberOfProjects > 20) {
+        printf("Enter number of projects [1-20]: ");
+        scanf("%n", &numberOfProjects);
+    }
+
+    // enter dependencies
+    while (numberOfDependencies < 0 || numberOfDependencies > 10) {
+        printf("Enter number of the projects dependencies [0-10]: ");
+        scanf("%n", &numberOfDependencies);
+    }
+
     return 0;
 }
