@@ -6,13 +6,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
+
+#define NULL_PROJECT (project *) 0
 
 enum projectState {VISITING, VISITED, NOT_VISITED};
 
-typedef struct {
+typedef struct project {
     char name;
     int incomingEdges;
-    struct project *children;
+    struct project **children;
+    int numberOfChildren;
     enum projectState state;
 } project;
 
@@ -21,24 +25,18 @@ typedef struct {
     struct projectsStack *next;
 } projectsStack;
 
-projectsStack *buildOrder();
-project **projectsToBuild;
-char **projectDependencies;
-
 int main(int argc, const char * argv[]) {
-    int numberOfProjects = 0;
-    int numberOfDependencies = 0;
+    int numberOfProjects = 5;
+    int numberOfDependencies = 10;
 
-    // enter projects
-    while (numberOfProjects <= 0 || numberOfProjects > 20) {
-        printf("Enter number of projects [1-20]: ");
-        scanf("%n", &numberOfProjects);
-    }
-
-    // enter dependencies
-    while (numberOfDependencies < 0 || numberOfDependencies > 10) {
-        printf("Enter number of the projects dependencies [0-10]: ");
-        scanf("%n", &numberOfDependencies);
+    project **projectsToBuild = (project **) malloc(sizeof(project *) * numberOfProjects);
+    for (int i = 0; i < numberOfProjects; i++) {
+        projectsToBuild[i] = (project *) malloc(sizeof(project));
+        projectsToBuild[i]->name = 'A' + (i % CHAR_MAX);
+        projectsToBuild[i]->incomingEdges = 0;
+        projectsToBuild[i]->children = (project **) 0;
+        projectsToBuild[i]->numberOfChildren = 0;
+        projectsToBuild[i]->state = NOT_VISITED;
     }
 
     return 0;
