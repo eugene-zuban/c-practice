@@ -25,9 +25,14 @@ typedef struct {
     struct projectsStack *next;
 } projectsStack;
 
+int getNameIndex(char projectName) {
+    return projectName - 'A';
+}
+
 int main(int argc, const char * argv[]) {
-    int numberOfProjects = 5;
-    int numberOfDependencies = 10;
+    int numberOfProjects = 6;
+    int numberOfDependencies = 6;
+    char dependencies[6][2];
 
     project **projectsToBuild = (project **) malloc(sizeof(project *) * numberOfProjects);
     for (int i = 0; i < numberOfProjects; i++) {
@@ -38,6 +43,9 @@ int main(int argc, const char * argv[]) {
         projectsToBuild[i]->numberOfChildren = 0;
         projectsToBuild[i]->state = NOT_VISITED;
     }
+
+    // build adjacency graph
+    projectsToBuild[getNameIndex('A')]->state = VISITING;
 
     return 0;
 }
