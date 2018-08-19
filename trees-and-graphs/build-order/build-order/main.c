@@ -11,6 +11,8 @@
 #define NULL_PROJECT (project *) 0
 #define EMPTY_EDGES (project **) 0
 
+#define FIRST_SET_DEP_NUMBET 7
+
 enum projectState {VISITING, VISITED, NOT_VISITED};
 
 typedef struct project {
@@ -106,9 +108,9 @@ void addEdgeToProjectGraph(graph *projectGraph, const char graphEdge[1]) {
  * Returns the adjacency list as a multi dimension array.
  */
 char **getFirstDependenciesSet() {
-    int rows = 7, cols = 2;
+    int rows = FIRST_SET_DEP_NUMBET, cols = 2;
     char **dep = (char **) malloc(sizeof(char *) * rows * cols);
-    for (int row = 0; row < 7; row++) {
+    for (int row = 0; row < rows; row++) {
         dep[row] = (char *) malloc(sizeof(char) * cols);
     }
 
@@ -125,11 +127,20 @@ char **getFirstDependenciesSet() {
 
 int main(int argc, const char * argv[]) {
     graph *projectsGraph = initProjectsGraph(7);
-    // create and test the first project dependencies list size of 7.
 
     char **dep = getFirstDependenciesSet();
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < FIRST_SET_DEP_NUMBET; i++) {
         addEdgeToProjectGraph(projectsGraph, dep[i]);
+    }
+
+    printf("Projects list:");
+    for (int i = 0; i < 7; ++i) {
+        printf(" %c", projectsGraph->nodes[i]->name);
+    }
+
+    printf("\nDependency map [dependency, dependent]:");
+    for (int i = 0; i < FIRST_SET_DEP_NUMBET; ++i) {
+        printf(" [%c, %c]", dep[0][0], dep[0][1]);
     }
 
     return 0;
