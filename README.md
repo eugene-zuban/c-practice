@@ -125,6 +125,6 @@ This repo includes small solutions written on C using different sources for idea
 
 **Hard tasks**
 1. [Add Without Plus:](https://github.com/jack-zuban/c-practice/blob/master/hard/add-without-plus/add-without-plus/main.c) Add two numbers without using any arithmetic operators.
-2. [Find missing number:](https://github.com/jack-zuban/c-practice/blob/master/array-and-strings/missing%20number/missing%20number/main.c) Find a missing number in an array of integers from 0 to n where the numbers in the array are stored in binary form and we can read only i-th bit of j-th element in O(1) time.
+4. [Find missing number:](https://github.com/jack-zuban/c-practice/blob/master/array-and-strings/missing%20number/missing%20number/main.c) Find a missing number in an array of integers from 0 to n where the numbers in the array are stored in binary form and we can read only i-th bit of j-th element in O(1) time.
 ### Algorithms ###
 1. [Find a 1d peak:](https://github.com/jack-zuban/c-practice/blob/master/algorithms/peak-finder-1d.c) Find a peak in 1D array `a[]`, where `a[i]` is a peak if `a[i-1] <= a[i] <= a[i+1]`
